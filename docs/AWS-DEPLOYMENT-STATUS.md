@@ -18,6 +18,7 @@ Last checked: 13 September 2026
 - Database: `zanich-preview-data-postgres`
 - Engine: PostgreSQL 18.6, `db.t4g.micro`, 20 GiB gp3
 - Network: private RDS subnets and database security group; no public database ingress
+- Latest observed state: database `MultiAZ=true`; CloudFormation was still finalizing enhanced monitoring when the deployment tool became unavailable
 - Protection: encrypted storage, managed owner secret, TLS enforcement, seven-day backups, deletion protection, Performance Insights and encrypted log group
 - Schema: `inquiries`, `notification_outbox` and `rate_limits` migrated
 - Runtime account: `zanich_app`; TLS and required table permissions were verified during setup
@@ -31,7 +32,7 @@ Last checked: 13 September 2026
 ## Remaining activation work
 
 1. Apply the final protected `DATABASE_URL` shell-quoting fix to the active EC2 release and rerun `deploy/ec2/verify-runtime.sh`; this is a remote follow-up after the first runtime check exposed shell parsing of the URL query string.
-2. Confirm the RDS CloudFormation stack reaches `CREATE_COMPLETE` and `MultiAZ=true` after its final modification completes.
+2. Confirm the RDS CloudFormation stack reaches `CREATE_COMPLETE` after its final modification completes.
 3. Configure Resend credentials and HTTPS before enabling website intake. Until then, WhatsApp remains the working customer route.
 4. Add a real domain or temporary TLS endpoint, then set `NEXT_PUBLIC_SITE_URL` and `DEPLOYMENT_STAGE` accordingly.
 5. Push the three local deployment commits to `origin/codex/production-foundation` once the Git credential/approval limit clears.
