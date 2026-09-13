@@ -11,6 +11,7 @@ User=zanich
 Group=zanich
 WorkingDirectory=/srv/zanich/current
 EnvironmentFile=/etc/zanich/app.env
+EnvironmentFile=-/etc/zanich/database.env
 Environment=NODE_ENV=production
 Environment=NODE_OPTIONS=--max-old-space-size=512
 Environment=MALLOC_ARENA_MAX=2

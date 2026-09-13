@@ -1,0 +1,36 @@
+rule database_is_private_and_encrypted {
+  Resources.Database.Properties.PubliclyAccessible == false
+  Resources.Database.Properties.StorageEncrypted == true
+  Resources.Database.Properties.ManageMasterUserPassword == true
+  Resources.Database.Properties.MasterUserPassword !exists
+  Resources.Database.Properties.MultiAZ == true
+  Resources.Database.Properties.BackupRetentionPeriod >= 7
+  Resources.Database.Properties.DeletionProtection == true
+  Resources.Database.Properties.EnablePerformanceInsights == true
+  Resources.Database.DeletionPolicy == "Retain"
+  Resources.Database.UpdateReplacePolicy == "Retain"
+}
+
+rule database_network_is_isolated {
+  Resources.DatabaseSubnetA.Properties.MapPublicIpOnLaunch == false
+  Resources.DatabaseSubnetB.Properties.MapPublicIpOnLaunch == false
+  Resources.DatabaseSecurityGroup.Properties.SecurityGroupIngress[*].FromPort == 5432
+  Resources.DatabaseSecurityGroup.Properties.SecurityGroupIngress[*].ToPort == 5432
+  Resources.DatabaseSecurityGroup.Properties.SecurityGroupIngress[*].SourceSecurityGroupId exists
+  Resources.DatabaseSecurityGroup.Properties.SecurityGroupIngress[*].CidrIp !exists
+  Resources.DatabaseSecurityGroup.Properties.SecurityGroupIngress[*].CidrIpv6 !exists
+}
+
+rule preview_exposes_only_http {
+  Resources.WebSecurityGroup.Properties.SecurityGroupIngress[*].FromPort == 80
+  Resources.WebSecurityGroup.Properties.SecurityGroupIngress[*].ToPort == 80
+}
+
+rule credentials_and_logs_are_encrypted {
+  Resources.AppSecret.Properties.KmsKeyId exists
+  Resources.AppSecret.Properties.GenerateSecretString.PasswordLength >= 32
+  Resources.DataKey.Properties.EnableKeyRotation == true
+  Resources.DataKey.DeletionPolicy == "Retain"
+  Resources.DatabaseLogGroup.Properties.KmsKeyId exists
+  Resources.DatabaseLogGroup.Properties.RetentionInDays <= 30
+}

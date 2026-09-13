@@ -7,6 +7,7 @@ if ! id zanich >/dev/null 2>&1; then
   useradd --system --create-home --home-dir /srv/zanich --shell /sbin/nologin zanich
 fi
 install -d -o root -g root -m 755 /srv/zanich /srv/zanich/releases
+install -d -o zanich -g zanich -m 700 /srv/zanich/.npm
 install -d -o root -g zanich -m 750 /etc/zanich
 if [[ ! -e /etc/zanich/app.env ]]; then
   umask 027
