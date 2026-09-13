@@ -2,6 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  // Limit build workers only on the small EC2 host; local defaults stay intact.
+  ...(process.env.ZANICH_SMALL_INSTANCE === "true"
+    ? { experimental: { cpus: 1 } }
+    : {}),
   async headers() {
     return [
       {

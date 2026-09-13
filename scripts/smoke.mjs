@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { mkdir, writeFile } from "node:fs/promises";
 
 const base = process.env.SMOKE_URL || "http://127.0.0.1:3000";
+const canonicalBase = process.env.SMOKE_CANONICAL_URL || "https://zanichtraders.co.ke";
 const paths = [
   "/",
   "/services",
@@ -29,7 +30,7 @@ for (const path of paths) {
   );
   const canonical = html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
   assert.ok(canonical, `${path} canonical exists`);
-  assert.equal(new URL(canonical).href, new URL(path, "https://zanichtraders.co.ke").href, `${path} canonical`);
+  assert.equal(new URL(canonical).href, new URL(path, canonicalBase).href, `${path} canonical`);
   assert.ok(html.includes("application/ld+json"), `${path} schema`);
   assert.ok(
     !html.includes("Connect this form to email"),
@@ -62,7 +63,7 @@ const options = {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
-    origin: "https://zanichtraders.co.ke",
+    origin: new URL(canonicalBase).origin,
     "Idempotency-Key": crypto.randomUUID(),
   },
   body: JSON.stringify(quote),
