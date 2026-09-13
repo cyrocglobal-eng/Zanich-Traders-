@@ -12,7 +12,9 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.6fr_1fr_1fr] lg:gap-8">
           <div className="max-w-sm">
             <Logo variant="light" />
-            <p className="mt-5 text-sm leading-relaxed text-white/55">{footer.blurb}</p>
+            <p className="mt-5 text-sm leading-relaxed text-white/55">
+              {footer.blurb}
+            </p>
             <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-brand">
               {site.tagline}
             </p>
@@ -26,7 +28,7 @@ export function Footer() {
               {nav.map((item) => (
                 <li key={item.href}>
                   <a
-                    href={item.href}
+                    href={`/${item.href}`}
                     className="text-sm text-white/65 transition-colors hover:text-white"
                   >
                     {item.label}
@@ -74,9 +76,9 @@ export function Footer() {
           <p className="text-xs text-white/40">
             &copy; {year} {footer.legal}
           </p>
-          <p className="text-xs text-white/40">
-            Built as a concept landing page · Content is easily editable
-          </p>
+          <a href="/privacy" className="text-sm text-white/75 underline">
+            Privacy &amp; contact preferences
+          </a>
         </div>
       </div>
     </footer>

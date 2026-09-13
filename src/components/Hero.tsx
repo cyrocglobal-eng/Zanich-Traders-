@@ -1,21 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { site } from "@/content/site";
+import { business } from "@/content/business";
 
 export function Hero() {
-  const reduce = useReducedMotion();
   const { hero } = site;
 
   const ease = [0.16, 1, 0.3, 1] as const;
 
   return (
-    <section
-      id="top"
-      className="relative overflow-hidden bg-ink text-white"
-    >
+    <section id="top" className="relative overflow-hidden bg-ink text-white">
       {/* Ambient glows */}
       <div className="pointer-events-none absolute -left-40 top-0 h-[520px] w-[520px] rounded-full bg-brand/25 blur-[130px]" />
       <div className="pointer-events-none absolute right-0 top-1/3 h-[420px] w-[420px] rounded-full bg-brand/10 blur-[120px]" />
@@ -34,7 +31,7 @@ export function Hero() {
         {/* Copy */}
         <div>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease }}
             className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-white/80 backdrop-blur"
@@ -48,7 +45,7 @@ export function Hero() {
               <motion.span
                 key={line}
                 className="block"
-                initial={{ opacity: 0, y: 28 }}
+                initial={false}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.1 + i * 0.12, ease }}
               >
@@ -70,7 +67,7 @@ export function Hero() {
           </h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4, ease }}
             className="mt-7 max-w-xl text-lg leading-relaxed text-white/70 text-pretty"
@@ -79,7 +76,7 @@ export function Hero() {
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.55, ease }}
             className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
@@ -95,7 +92,7 @@ export function Hero() {
 
           {/* Stats */}
           <motion.dl
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.7, ease }}
             className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-white/10 pt-8"
@@ -105,15 +102,20 @@ export function Hero() {
                 <dt className="font-display text-3xl font-800 tracking-tight text-white lg:text-4xl">
                   {s.value}
                 </dt>
-                <dd className="mt-1 text-xs leading-snug text-white/55">{s.label}</dd>
+                <dd className="mt-1 text-xs leading-snug text-white/55">
+                  {s.label}
+                </dd>
               </div>
             ))}
           </motion.dl>
+          <p className="mt-4 max-w-lg text-sm leading-relaxed text-white/70">
+            *{business.fastTrack}
+          </p>
         </div>
 
         {/* Visual */}
         <motion.div
-          initial={{ opacity: 0, scale: reduce ? 1 : 0.94, y: reduce ? 0 : 24 }}
+          initial={false}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease }}
           className="relative"
@@ -124,7 +126,8 @@ export function Hero() {
               alt="Branded corporate promotional merchandise — mug, notebook, bottle, apparel and lanyard by Zanich General Traders"
               width={1408}
               height={768}
-              priority
+              loading="eager"
+              fetchPriority="high"
               sizes="(max-width: 1024px) 100vw, 48vw"
               className="h-full w-full object-cover"
             />
@@ -133,7 +136,7 @@ export function Hero() {
 
           {/* Floating tagline card */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.9, ease }}
             className="absolute -bottom-5 -left-3 flex items-center gap-3 rounded-2xl border border-white/10 bg-ink-soft/90 px-5 py-4 shadow-xl backdrop-blur-md sm:-left-6"

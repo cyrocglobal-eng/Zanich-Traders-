@@ -1,64 +1,11 @@
-# Zanich General Traders — Premium Landing Page (Concept)
+# Zanich General Traders — Application
 
-A premium, production-quality landing page concept for **Zanich General Traders**, a Nairobi-based
-printing, branding & promotional products firm. Built to demonstrate the value of a full corporate
-website before scoping the complete project.
+Implementation update: Next.js 16, React and TypeScript with eight service pages, reviewed WhatsApp quote handoffs, durable website inquiries, an email outbox, constrained AI support, private feedback and consent-controlled analytics. Production domain: https://zanichtraders.co.ke.
 
-> Tagline: **"Over and above ink on paper"**
+See [the production guide](docs/PRODUCTION.md) and `.env.example` for current setup and activation. Default builds are not indexable. Database, email sender, notification scheduling, AI, Search Console and GTM require account configuration. Rebuild after configuring integrations. Fast-track work always receives an individual quote and team confirmation.
 
-## Tech stack
+Run `npm ci`, `npm run dev` for local work; `npm run build` and `npm start` for a production-style preview. Validation: `npm run lint`, `npm run typecheck`, `npm test`, then `node scripts/smoke.mjs` against the running preview. `npm run check:production` lists deployment configuration gaps.
 
-- **Next.js 14** (App Router) + **TypeScript**
-- **Tailwind CSS** (custom brand design system)
-- **Framer Motion** (scroll & entrance animations)
-- **lucide-react** (icons)
-- Self-hosted variable fonts — **Sora** (display) + **Inter** (body) via `@fontsource-variable`
+Architecture: `src/content` holds business facts; `src/contracts` holds shared validation; `src/components` holds UI; `src/server` holds intake, persistence, notifications and AI; `src/lib/seo` holds SEO builders. Database setup and workers live in `migrations` and `scripts`.
 
-## Getting started
-
-```bash
-npm install
-npm run dev      # http://localhost:3000
-npm run build    # production build
-npm start        # serve production build
-```
-
-## Editing business content
-
-**All business-specific copy, contact details, services, clients and testimonials live in one file:**
-
-```
-src/content/site.ts
-```
-
-Change values there and the whole page updates. Items commented `PLACEHOLDER` are editable
-guesses/fillers (e.g. stats, opening hours, domain) — replace them with verified facts before launch.
-
-## Structure
-
-```
-src/
-├── app/
-│   ├── layout.tsx        # SEO metadata, fonts, JSON-LD structured data
-│   ├── page.tsx          # Section composition
-│   └── globals.css       # Design tokens & component classes
-├── content/site.ts       # ← SINGLE SOURCE OF BUSINESS CONTENT (edit here)
-└── components/           # Navbar, Hero, About, Services, WhyUs, Portfolio,
-                          # Clients, Testimonials, Contact, Footer, etc.
-public/images/            # Hero, studio, portfolio & background imagery
-```
-
-## Sections
-
-Hero · Tagline strip · About · Services · Why Choose Us · Portfolio · Clients ·
-Testimonials · Contact (with quote form) · Footer
-
-## Notes for handoff
-
-- **Contact form** currently shows a success state on submit (no backend). Wire it to email
-  (e.g. Resend / Formspree) or a CRM to receive live leads.
-- **Imagery** is AI-generated placeholder art on-brand with the profile. Swap in real photos of
-  Zanich's work and client logos for production.
-- **Domain / OG URL** placeholder is in `src/app/layout.tsx` (`siteUrl`).
-- Fully responsive, accessible (skip link, focus states, reduced-motion support) and SEO-ready
-  (metadata, Open Graph, Twitter cards, LocalBusiness JSON-LD).
+The original brand copy and testimonials are preserved. The existing concept imagery is retained; confirm or replace it with approved photographs before launch. Additional supplied photographs are in the parent Desktop project folder.

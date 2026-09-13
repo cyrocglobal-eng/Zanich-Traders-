@@ -11,7 +11,13 @@ type RevealProps = {
   as?: "div" | "section" | "li" | "article" | "span";
 };
 
-export function Reveal({ children, delay = 0, y = 24, className, as = "div" }: RevealProps) {
+export function Reveal({
+  children,
+  delay = 0,
+  y = 24,
+  className,
+  as = "div",
+}: RevealProps) {
   const reduce = useReducedMotion();
   const MotionTag = motion[as] as typeof motion.div;
 
@@ -28,7 +34,7 @@ export function Reveal({ children, delay = 0, y = 24, className, as = "div" }: R
     <MotionTag
       className={className}
       variants={variants}
-      initial="hidden"
+      initial={false}
       whileInView="show"
       viewport={{ once: true, margin: "-80px" }}
     >
@@ -49,7 +55,7 @@ export function RevealGroup({
   return (
     <motion.div
       className={className}
-      initial="hidden"
+      initial={false}
       whileInView="show"
       viewport={{ once: true, margin: "-80px" }}
       variants={{
@@ -80,7 +86,11 @@ export function RevealItem({
       className={className}
       variants={{
         hidden: { opacity: 0, y: reduce ? 0 : y },
-        show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] } },
+        show: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] },
+        },
       }}
     >
       {children}

@@ -1,0 +1,134 @@
+[
+  {
+    "id": "kenya-polo",
+    "title": "Kenya-inspired polo",
+    "category": "Apparel",
+    "kind": "Product photo",
+    "service": "promotional-merchandise",
+    "src": "/images/gallery/kenya-polo.webp",
+    "width": 488,
+    "height": 575,
+    "alt": "Black, white and red polo with a Kenyan flag and patterned front — Zanich portfolio, Nairobi, Kenya."
+  },
+  {
+    "id": "branded-pens",
+    "title": "Logo pens",
+    "category": "Promotional Merchandise",
+    "kind": "Product photo",
+    "service": "promotional-merchandise",
+    "src": "/images/gallery/branded-pens.webp",
+    "width": 1244,
+    "height": 589,
+    "alt": "Blue and white promotional pens with printed business lettering — Zanich portfolio, Nairobi, Kenya."
+  },
+  {
+    "id": "logo-cap",
+    "title": "Embroidered cap",
+    "category": "Custom Embroidery",
+    "kind": "Product photo",
+    "service": "promotional-merchandise",
+    "src": "/images/gallery/logo-cap.webp",
+    "width": 857,
+    "height": 695,
+    "alt": "Navy cap with a blue and green stitched logo — Zanich portfolio, Nairobi, Kenya."
+  },
+  {
+    "id": "logo-mug",
+    "title": "Branded ceramic mug",
+    "category": "Sublimation",
+    "kind": "Product photo",
+    "service": "sublimation",
+    "src": "/images/gallery/logo-mug.webp",
+    "width": 657,
+    "height": 640,
+    "alt": "White ceramic mug with a blue and green company logo — Zanich portfolio, Nairobi, Kenya."
+  },
+  {
+    "id": "printed-safety-vest",
+    "title": "Printed safety vest",
+    "category": "Apparel",
+    "kind": "Product photo",
+    "service": "promotional-merchandise",
+    "src": "/images/gallery/printed-safety-vest.webp",
+    "width": 1280,
+    "height": 960,
+    "alt": "High-visibility yellow vest with bold black AD ENERGY lettering — Zanich portfolio, Nairobi, Kenya."
+  },
+  {
+    "id": "teardrop-banner",
+    "title": "Teardrop banner concept",
+    "category": "Large Format Signage",
+    "kind": "Design preview",
+    "service": "large-format-printing",
+    "src": "/images/gallery/teardrop-banner.webp",
+    "width": 362,
+    "height": 821,
+    "alt": "Cream teardrop banner design with green and red motorsport branding — Zanich portfolio, Nairobi, Kenya."
+  },
+  {
+    "id": "branded-notebooks",
+    "title": "Branded notebooks",
+    "category": "Promotional Merchandise",
+    "kind": "Product photo",
+    "service": "promotional-merchandise",
+    "src": "/images/gallery/branded-notebooks.webp",
+    "width": 1200,
+    "height": 1600,
+    "alt": "Kraft-cover notebooks with printed organisation logos and blue lettering — Zanich portfolio, Nairobi, Kenya."
+  },
+  {
+    "id": "patterned-shirts",
+    "title": "All-over patterned shirts",
+    "category": "Sublimation",
+    "kind": "Product photo",
+    "service": "sublimation",
+    "src": "/images/gallery/patterned-shirts.webp",
+    "width": 1200,
+    "height": 1600,
+    "alt": "Colourful patterned shirts laid out together in a production workspace — Zanich portfolio, Nairobi, Kenya."
+  },
+  {
+    "id": "hospitality-polo",
+    "title": "Hospitality logo polo",
+    "category": "Custom Embroidery",
+    "kind": "Product photo",
+    "service": "promotional-merchandise",
+    "src": "/images/gallery/hospitality-polo.webp",
+    "width": 582,
+    "height": 514,
+    "alt": "Navy polo with a small orange and white hospitality logo on the chest — Zanich portfolio, Nairobi, Kenya."
+  },
+  {
+    "id": "lectern-branding",
+    "title": "Lectern branding concept",
+    "category": "Large Format Signage",
+    "kind": "Design preview",
+    "service": "large-format-printing",
+    "src": "/images/gallery/lectern-branding.webp",
+    "width": 417,
+    "height": 645,
+    "alt": "Wooden lectern design with a rectangular logo panel on the front — Zanich portfolio, Nairobi, Kenya."
+  },
+  {
+    "id": "field-vest-design",
+    "title": "Branded field vest concept",
+    "category": "Apparel",
+    "kind": "Design preview",
+    "service": "promotional-merchandise",
+    "src": "/images/gallery/field-vest-design.webp",
+    "width": 1209,
+    "height": 716,
+    "alt": "Front and back design views of a beige utility vest with partner logos — Zanich portfolio, Nairobi, Kenya."
+  },
+  {
+    "id": "personalised-mugs",
+    "title": "Personalised mug designs",
+    "category": "Sublimation",
+    "kind": "Design preview",
+    "service": "sublimation",
+    "src": "/images/gallery/personalised-mugs.webp",
+    "width": 736,
+    "height": 1104,
+    "alt": "Black and white mugs with Best Dad Ever and Best Mom Ever lettering — Zanich portfolio, Nairobi, Kenya."
+  }
+]
