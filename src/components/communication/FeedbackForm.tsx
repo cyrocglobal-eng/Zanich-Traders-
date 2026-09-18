@@ -94,7 +94,7 @@ export function FeedbackForm({
             Reference: {reference}. The team will review your message.
           </p>
         )}
-        <pre className="mt-4 whitespace-pre-wrap break-words rounded-xl bg-ink/5 p-4 font-sans text-sm leading-relaxed">
+        <pre className="mt-4 whitespace-pre-wrap break-words rounded bg-ink/5 p-4 font-sans text-sm leading-relaxed">
           {summary}
         </pre>
         {error && (
@@ -169,7 +169,7 @@ export function FeedbackForm({
           </label>
         ))}
       </div>
-      <p className="mt-2 text-sm text-ink/65">
+      <p className="mt-2 text-sm text-ink/75">
         Provide an email address or phone number for our reply.
       </p>
       <label className="mt-4" htmlFor={`${id}-message`}>

@@ -10,13 +10,13 @@ const icons: LucideIcon[] = [Boxes, Cpu, Zap, TrendingUp];
 export function WhyUs() {
   const { why } = site;
   return (
-    <section id="why" className="relative bg-paper py-24 lg:py-32">
+    <section id="why" className="press-section bg-paper">
       <div className="container-x grid gap-14 lg:grid-cols-2 lg:gap-20">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <SectionHeading eyebrow={why.eyebrow} title={why.title} />
 
           <Reveal delay={0.15}>
-            <div className="mt-8 overflow-hidden rounded-[24px] border border-ink/10 shadow-xl shadow-ink/5">
+            <div className="mt-8 overflow-hidden border border-ink/10">
               <Image
                 src="/images/printshop.jpg"
                 alt="Cutting-edge large-format printing technology at Zanich General Traders"
@@ -29,22 +29,22 @@ export function WhyUs() {
           </Reveal>
         </div>
 
-        <RevealGroup className="grid gap-5 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+        <RevealGroup className="grid gap-x-8 sm:grid-cols-2 lg:grid-cols-1">
           {why.reasons.map((reason, i) => {
             const Icon = icons[i % icons.length];
             return (
               <RevealItem
                 key={reason.title}
-                className="group relative flex flex-col rounded-3xl border border-ink/8 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-xl hover:shadow-brand/5"
+                className="relative grid grid-cols-[40px_1fr] gap-x-5 border-t border-ink/20 py-6"
               >
-                <span className="text-6xl font-800 leading-none text-ink/5 transition-colors group-hover:text-brand/10">
+                <span className="col-start-1 row-span-3 text-sm font-semibold text-brand-600">
                   0{i + 1}
                 </span>
-                <span className="mt-6 flex h-12 w-12 items-center justify-center rounded-xl bg-ink text-white transition-colors duration-300 group-hover:bg-brand">
+                <span className="hidden">
                   <Icon className="h-5.5 w-5.5" />
                 </span>
-                <h3 className="mt-5 font-display text-lg font-700 text-ink">{reason.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink/55">{reason.desc}</p>
+                <h3 className="col-start-2 font-display text-xl font-600 text-ink">{reason.title}</h3>
+                <p className="col-start-2 mt-2 text-sm leading-relaxed text-ink/75">{reason.desc}</p>
               </RevealItem>
             );
           })}

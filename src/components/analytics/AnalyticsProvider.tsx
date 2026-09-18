@@ -93,7 +93,7 @@ export function AnalyticsProvider() {
       {((enabled && choice === "unknown") || preferences) && (
         <section
           aria-label="Analytics preferences"
-          className="fixed bottom-24 left-3 right-3 z-[45] max-w-md rounded-2xl border border-ink/20 bg-white p-5 text-ink shadow-2xl sm:bottom-6 sm:left-6 sm:right-auto"
+          className="fixed bottom-24 left-3 right-3 z-[45] max-w-md rounded-lg border border-ink/20 bg-white p-5 text-ink shadow-xl sm:bottom-6 sm:left-6 sm:right-auto"
         >
           <h2 className="font-display font-700">Your privacy choices</h2>
           <p className="mt-2 text-sm leading-relaxed">

@@ -1,31 +1,31 @@
 .gallery { margin-top: 3rem; }
 .filters { display:flex; flex-wrap:wrap; gap:.6rem; }
-.filters button { border:1px solid #d7d7d7; border-radius:999px; min-height:44px; padding:.65rem 1rem; font-size:.82rem; font-weight:600; transition:background .15s,color .15s; }
+.filters button { border:1px solid #d7d7d7; border-radius:4px; min-height:48px; padding:.65rem 1rem; font-size:.82rem; font-weight:600; transition:background .15s,color .15s; }
 .filters button[aria-pressed="true"] { background:#121212; border-color:#121212; color:white; }
-.filters button:hover { border-color:#d60016; }
+.filters button:hover { border-color:var(--action); }
 .context { display:flex; justify-content:space-between; flex-wrap:wrap; gap:.75rem; margin:1.4rem 0; color:#666; font-size:.82rem; }
 .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.5rem; }
-.card { overflow:hidden; border:1px solid #e3e3e3; border-radius:1.5rem; background:white; }
+.card { overflow:hidden; border-bottom:1px solid var(--line); background:white; }
 .imageButton { display:block; position:relative; width:100%; aspect-ratio:4/3; background:#f1f0ed; overflow:hidden; text-align:left; }
-.cardImage { object-fit:contain; padding:.8rem; transition:transform .35s; }
-.imageButton:hover .cardImage { transform:scale(1.035); }
-.kind { position:absolute; left:1rem; top:1rem; background:rgba(255,255,255,.95); color:#333; border-radius:999px; padding:.35rem .65rem; font-size:.65rem; font-weight:600; box-shadow:0 1px 4px #0001; }
-.expand { position:absolute; right:.8rem; bottom:.8rem; display:grid; place-items:center; width:36px; height:36px; border-radius:50%; color:white; background:#151515; }
-.cardBody { padding:1.25rem; }
-.category { color:#a90012; font-size:.67rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+.cardImage { object-fit:contain; padding:.8rem; transition:transform var(--duration-default) var(--ease-out); }
+.imageButton:hover .cardImage { transform:scale(1.025); }
+.kind { position:absolute; left:1rem; top:1rem; background:rgba(255,255,255,.95); color:#333; border-radius:4px; padding:.35rem .65rem; font-size:.75rem; font-weight:600; box-shadow:0 1px 4px #0001; }
+.expand { position:absolute; right:.8rem; bottom:.8rem; display:grid; place-items:center; width:44px; height:44px; border-radius:4px; color:white; background:#151515; }
+.cardBody { padding:1.25rem 0 1.5rem; }
+.category { color:var(--action); font-size:.75rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
 .cardBody h3 { font-family:var(--font-display),sans-serif; font-size:1.1rem; font-weight:700; margin:.4rem 0 1rem; }
 .actions { display:flex; flex-wrap:wrap; gap:.6rem; }
-.quote,.whatsapp { display:inline-flex; align-items:center; justify-content:center; gap:.4rem; min-height:44px; border-radius:999px; padding:.6rem .85rem; font-size:.75rem; font-weight:600; }
-.quote { background:#d60016; color:white; }
-.quote:hover { background:#aa0012; }
+.quote,.whatsapp { display:inline-flex; align-items:center; justify-content:center; gap:.4rem; min-height:48px; border-radius:4px; padding:.6rem .85rem; font-size:.75rem; font-weight:600; }
+.quote { background:var(--action); color:white; }
+.quote:hover { background:#0a0a0b; }
 .whatsapp { border:1px solid #b9d2bf; color:#246339; background:#f7faf7; }
 .whatsapp:hover { background:#e9f3eb; }
-.dialog { width:min(1000px,calc(100% - 2rem)); max-height:calc(100dvh - 2rem); margin:auto; padding:0; border:0; border-radius:1.5rem; color:#151515; background:transparent; }
+.dialog { width:min(1000px,calc(100% - 2rem)); max-height:calc(100dvh - 2rem); margin:auto; padding:0; border:0; border-radius:8px; color:#151515; background:transparent; }
 .dialog::backdrop { background:rgba(0,0,0,.78); }
-.dialogInner { background:white; overflow:hidden; border-radius:1.5rem; }
+.dialogInner { background:white; overflow:hidden; border-radius:8px; }
 .dialogHeader { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1.2rem 1.5rem; border-bottom:1px solid #ddd; }
 .dialogHeader h2 { font-size:1.2rem; font-weight:700; margin-top:.35rem; }
-.iconButton { display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; width:44px; height:44px; border:1px solid #ddd; border-radius:50%; background:white; }
+.iconButton { display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; width:44px; height:44px; border:1px solid #ddd; border-radius:4px; background:white; }
 .iconButton:disabled { opacity:.35; }
 .inspection { position:relative; height:min(58dvh,650px); background:#efefec; }
 .fullImage { object-fit:contain; }
@@ -33,8 +33,8 @@
 .navigation { display:flex; align-items:center; gap:.7rem; font-size:.75rem; }
 .navigation span { max-width:230px; text-align:center; }
 .quoteBody { padding:1.5rem; max-width:720px; margin:auto; }
-.loading { position:fixed; bottom:6rem; left:50%; transform:translateX(-50%); z-index:60; padding:1rem; border-radius:1rem; background:#151515; color:white; }
-.gallery button:focus-visible,.gallery a:focus-visible,.dialog button:focus-visible,.dialog a:focus-visible { outline:3px solid #d60016; outline-offset:3px; }
+.loading { position:fixed; bottom:6rem; left:50%; transform:translateX(-50%); z-index:60; padding:1rem; border-radius:4px; background:#151515; color:white; }
+.gallery button:focus-visible,.gallery a:focus-visible,.dialog button:focus-visible,.dialog a:focus-visible { outline:3px solid var(--action); outline-offset:3px; }
 @media(max-width:1023px) { .grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(max-width:639px) { .grid { grid-template-columns:1fr; gap:1.25rem; }.filters { gap:.5rem; }.filters button { font-size:.75rem; padding:.6rem .85rem; }.dialogHeader,.dialogFooter,.quoteBody { padding:1rem; }.dialogFooter { flex-direction:column; align-items:stretch; }.navigation { justify-content:space-between; }.inspection { height:45dvh; }.dialog .actions>* { flex:1; } }
 @media(prefers-reduced-motion:reduce) { .cardImage,.filters button { transition:none; }.imageButton:hover .cardImage { transform:none; } }

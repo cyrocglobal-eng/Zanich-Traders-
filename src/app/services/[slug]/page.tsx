@@ -52,7 +52,7 @@ export default async function ServicePage({
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
               <p className="eyebrow">Zanich General Traders · Nairobi</p>
-              <h1 className="mt-4 font-display text-4xl font-800 leading-tight sm:text-5xl">
+              <h1 className="mt-4 font-display text-4xl font-700 leading-tight tracking-tightest sm:text-5xl">
                 {service.name}
               </h1>
               <p className="mt-6 text-xl leading-relaxed text-ink/75">
@@ -80,7 +80,7 @@ export default async function ServicePage({
               width={900}
               height={650}
               alt={`${service.name} examples from the Zanich portfolio`}
-              className="aspect-[4/3] w-full rounded-3xl object-cover"
+              className="aspect-[4/3] w-full  object-cover"
               sizes="(max-width:1024px) 100vw, 45vw"
               loading="eager"
               fetchPriority="high"
@@ -104,7 +104,7 @@ export default async function ServicePage({
               </p>
             </section>
           </div>
-          <section className="mt-10 rounded-2xl bg-ink p-7 text-white">
+          <section className="mt-10 rounded bg-ink p-7 text-white">
             <h2 className="font-display text-xl font-700">
               Working to a deadline?
             </h2>
@@ -124,7 +124,7 @@ export default async function ServicePage({
                   <li key={item.slug}>
                     <a
                       href={`/services/${item.slug}`}
-                      className="inline-block rounded-full border border-ink/20 px-4 py-3 text-sm hover:border-brand"
+                      className="inline-block rounded border border-ink/20 px-4 py-3 text-sm hover:border-brand"
                     >
                       {item.name}
                     </a>

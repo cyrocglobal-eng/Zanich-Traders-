@@ -96,7 +96,7 @@ export default function AgentPanel({
           type="button"
           aria-label="Close support"
           onClick={onClose}
-          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/25"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded border border-white/25"
         >
           <X />
         </button>
@@ -132,7 +132,7 @@ export default function AgentPanel({
                 ? "Hi, I’m Zanich’s AI assistant. I can explain our services and help prepare your project brief. What would you like to print or brand?"
                 : "The AI assistant is currently unavailable. You can still prepare a quote request or speak directly with the Zanich team."}
             </p>
-            <p className="mt-3 text-sm leading-relaxed text-ink/65">
+            <p className="mt-3 text-sm leading-relaxed text-ink/75">
               Prices, artwork readiness and fast-track availability are
               confirmed by the team.{" "}
               <a
@@ -154,7 +154,7 @@ export default function AgentPanel({
               {messages.map((message, index) => (
                 <div
                   key={index}
-                  className={`rounded-2xl p-4 ${message.role === "user" ? "ml-5 bg-ink text-white" : "mr-5 bg-ink/5"}`}
+                  className={`rounded p-4 ${message.role === "user" ? "ml-5 bg-ink text-white" : "mr-5 bg-ink/5"}`}
                 >
                   <p className="mb-1 text-xs font-semibold uppercase tracking-wider">
                     {message.role === "user" ? "You" : "AI assistant"}
@@ -203,7 +203,7 @@ export default function AgentPanel({
               </form>
             )}
             {summary && (
-              <div className="mt-5 rounded-2xl border border-ink/15 p-4">
+              <div className="mt-5 rounded border border-ink/15 p-4">
                 <label
                   htmlFor="handoff-summary"
                   className="text-sm font-semibold"
@@ -218,7 +218,7 @@ export default function AgentPanel({
                   onChange={(event) => setSummary(event.target.value)}
                   rows={4}
                 />
-                <p className="mt-2 text-sm text-ink/65">
+                <p className="mt-2 text-sm text-ink/75">
                   Nothing is sent to the team until you choose a contact option.
                 </p>
               </div>

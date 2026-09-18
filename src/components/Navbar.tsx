@@ -32,7 +32,7 @@ export function Navbar() {
             <li key={item.href}>
               <a
                 href={`/${item.href}`}
-                className="rounded-full px-3 py-3 text-sm font-medium text-ink/80 hover:text-brand"
+                className="rounded px-3 py-3 text-sm font-medium text-ink/80 hover:text-brand"
               >
                 {item.label}
               </a>
@@ -49,7 +49,7 @@ export function Navbar() {
           ref={toggle}
           type="button"
           onClick={() => setOpen(!open)}
-          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-ink/20 lg:hidden"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded border border-ink/20 lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-navigation"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -67,7 +67,7 @@ export function Navbar() {
             {site.nav.map((item) => (
               <li key={item.href}>
                 <a
-                  className="block rounded-xl px-4 py-3 text-base hover:bg-ink/5"
+                  className="block rounded px-4 py-3 text-base hover:bg-ink/5"
                   href={`/${item.href}`}
                   onClick={() => setOpen(false)}
                 >

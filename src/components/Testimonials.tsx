@@ -6,12 +6,12 @@ import { SectionHeading } from "./SectionHeading";
 export function Testimonials() {
   const { testimonials } = site;
   return (
-    <section className="relative bg-white py-24 lg:py-32">
+    <section className="press-section bg-white">
       <div className="container-x">
         <SectionHeading
           eyebrow={testimonials.eyebrow}
           title={testimonials.title}
-          align="center"
+          align="left"
           className="mb-14"
         />
 
@@ -19,9 +19,9 @@ export function Testimonials() {
           {testimonials.items.map((t) => (
             <RevealItem
               key={t.author}
-              className="relative flex flex-col rounded-[26px] border border-ink/8 bg-paper p-8 lg:p-10"
+              className="relative flex flex-col border-t-2 border-ink bg-paper p-6 lg:p-8"
             >
-              <Quote className="h-9 w-9 text-brand/25" fill="currentColor" />
+              <figure className="flex h-full flex-col"><Quote className="h-9 w-9 text-brand-600" fill="currentColor" />
               <div className="mt-4 flex gap-1 text-brand">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star key={i} className="h-4 w-4" fill="currentColor" />
@@ -36,9 +36,9 @@ export function Testimonials() {
                 </span>
                 <div>
                   <p className="font-display text-base font-700 text-ink">{t.author}</p>
-                  <p className="text-sm text-ink/50">{t.role}</p>
+                  <p className="text-sm text-ink/70">{t.role}</p>
                 </div>
-              </figcaption>
+              </figcaption></figure>
             </RevealItem>
           ))}
         </RevealGroup>

@@ -8,7 +8,7 @@ const AgentPanel = dynamic(() => import("./AgentPanel"), {
   loading: () => (
     <p
       role="status"
-      className="fixed bottom-24 right-6 z-50 rounded-xl bg-white p-4 shadow-xl"
+      className="fixed bottom-24 right-6 z-50 rounded bg-white p-4 shadow-xl"
     >
       Opening support…
     </p>
@@ -63,7 +63,7 @@ export function ContactDock({
           WhatsApp
         </a>
         <button
-          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-ink/20"
+          className="flex h-12 w-12 shrink-0 items-center justify-center rounded border border-ink/20"
           aria-label="Ask Zanich support"
           aria-haspopup="dialog"
           onClick={() => setOpen(true)}

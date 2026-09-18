@@ -14,7 +14,7 @@ type RevealProps = {
 export function Reveal({
   children,
   delay = 0,
-  y = 24,
+  y = 8,
   className,
   as = "div",
 }: RevealProps) {
@@ -26,7 +26,7 @@ export function Reveal({
     show: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] },
+      transition: { duration: reduce ? 0 : 0.32, delay: reduce ? 0 : delay, ease: [0.2, 0, 0, 1] },
     },
   };
 
@@ -71,7 +71,7 @@ export function RevealGroup({
 export function RevealItem({
   children,
   className,
-  y = 24,
+  y = 8,
   as = "div",
 }: {
   children: ReactNode;
@@ -89,7 +89,7 @@ export function RevealItem({
         show: {
           opacity: 1,
           y: 0,
-          transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] },
+          transition: { duration: reduce ? 0 : 0.32, ease: [0.2, 0, 0, 1] },
         },
       }}
     >

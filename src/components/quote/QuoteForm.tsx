@@ -130,7 +130,7 @@ export function QuoteForm({
             ? "The team will review your brief. For an urgent request, continue on WhatsApp with this reference."
             : "Check your details, then choose how to contact us. WhatsApp opens a draft for you to send."}
         </p>
-        <pre className="mt-5 max-h-80 overflow-auto whitespace-pre-wrap break-words rounded-xl bg-ink/5 p-4 font-sans text-sm leading-relaxed">
+        <pre className="mt-5 max-h-80 overflow-auto whitespace-pre-wrap break-words rounded bg-ink/5 p-4 font-sans text-sm leading-relaxed">
           {quoteSummary(review, reference)}
         </pre>
         {error && (
@@ -168,7 +168,7 @@ export function QuoteForm({
             </button>
           )}
         </div>
-        <p className="mt-4 text-sm text-ink/65">{business.fastTrack}</p>
+        <p className="mt-4 text-sm text-ink/75">{business.fastTrack}</p>
       </div>
     );
 
@@ -243,7 +243,7 @@ export function QuoteForm({
           {fieldError("phone")}
         </label>
       </div>
-      <p className="mt-2 text-sm text-ink/65">
+      <p className="mt-2 text-sm text-ink/75">
         Please provide an email address or phone number so we can reply.
       </p>
       <label className="mt-5" htmlFor={`${id}-service`}>
@@ -286,7 +286,7 @@ export function QuoteForm({
         </select>
       </label>
       <details
-        className="specification-fields mt-4 rounded-xl border border-ink/15 p-4"
+        className="specification-fields mt-4 rounded border border-ink/15 p-4"
         key={selected.slug}
       >
         <summary className="cursor-pointer text-sm font-semibold">
@@ -348,7 +348,7 @@ export function QuoteForm({
         Review request
         <ArrowRight className="h-4 w-4" />
       </button>
-      <p className="mt-4 text-sm leading-relaxed text-ink/65">
+      <p className="mt-4 text-sm leading-relaxed text-ink/75">
         {business.fastTrack}
       </p>
     </form>

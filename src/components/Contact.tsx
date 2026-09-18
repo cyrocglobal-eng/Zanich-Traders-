@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Mail, Phone, MapPin, MessageCircle, Clock } from "lucide-react";
 import { site } from "@/content/site";
 import { QuoteForm } from "./quote/QuoteForm";
@@ -37,17 +36,8 @@ export function Contact({ initialService }: { initialService?: string }) {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-ink py-24 text-white lg:py-32"
+      className="press-section bg-ink text-white"
     >
-      <Image
-        src="/images/cta-abstract.jpg"
-        alt=""
-        aria-hidden="true"
-        fill
-        sizes="100vw"
-        className="object-cover opacity-25"
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/85 to-ink" />
       <div className="container-x relative grid gap-12 lg:grid-cols-2 lg:gap-16">
         <div>
           <span className="eyebrow">Contact</span>
@@ -76,8 +66,8 @@ export function Contact({ initialService }: { initialService?: string }) {
                       aria-hidden="true"
                       className="h-5 w-5 shrink-0 text-brand"
                     />
-                    <span>
-                      <span className="block text-sm text-white/65">
+                    <span className="min-w-0">
+                      <span className="block text-sm text-white/75">
                         {label}
                       </span>
                       <span className="break-words text-base">{value}</span>
@@ -89,8 +79,8 @@ export function Contact({ initialService }: { initialService?: string }) {
                       aria-hidden="true"
                       className="h-5 w-5 shrink-0 text-brand"
                     />
-                    <span>
-                      <span className="block text-sm text-white/65">
+                    <span className="min-w-0">
+                      <span className="block text-sm text-white/75">
                         {label}
                       </span>
                       {value}
@@ -101,7 +91,7 @@ export function Contact({ initialService }: { initialService?: string }) {
             ))}
           </ul>
         </div>
-        <div className="min-w-0 rounded-[26px] bg-white p-6 text-ink shadow-2xl sm:p-8">
+        <div className="min-w-0 self-start border-t-4 border-brand bg-white p-5 text-ink sm:p-8">
           <QuoteForm
             initialService={initialService}
             canSubmit={quoteAvailable()}
