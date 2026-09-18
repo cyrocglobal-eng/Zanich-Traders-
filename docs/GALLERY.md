@@ -1,23 +1,49 @@
-# Gallery and asset mapping
+# Complete portfolio collection
 
-## Plan and scope
+The 67 numbered JPEGs supplied on 18 September 2026 are all represented. Twelve
+exact SHA-256 matches reuse the existing portfolio IDs; 55 new entries complete the
+collection. Different designs and alternate views remain separate. No original is
+cropped, edited or deleted. Labels distinguish photos, design previews and references;
+logos do not imply an endorsement or a confirmed production method.
 
-Preserve the existing Selected Work heading and brand styling. Replace its six concept tiles with a curated responsive grid using the supplied Desktop assets. Keep category navigation, image inspection and quote actions together. Reuse the existing quote form and WhatsApp helper; do not modify API routes, service lists, testimonials or global SEO.
+## Local storage and maintenance
 
-## Asset audit
+- `assets/portfolio-originals/`: archived original JPEGs, outside the web-served directory.
+- `scripts/portfolio-catalogue.json`: reviewed titles, categories, descriptions and labels.
+- `public/images/gallery/`: full WebP renditions, at most 1600px on either side.
+- `public/images/gallery/thumbs/`: prebuilt WebP thumbnails bounded to 360px and 720px.
+- `src/content/gallery-assets.json`: local paths, dimensions, alt text and responsive widths.
+- `docs/gallery-provenance.json`: source filename and SHA-256 for every item.
 
-The supplied folder contains 68 JPEG files, including product photographs, mockups, design proofs, repeated variants and standalone artwork. Twelve representative images are included across Custom Embroidery, Large Format Signage, Promotional Merchandise, Sublimation and Apparel. Mockups are visibly labeled Design preview; photographs are labeled Product photo. Category groupings describe inquiry types; staff must confirm production methods, suitability and availability. No new client endorsement is inferred from a visible logo.
+Run `node scripts/build-portfolio.mjs` from the app directory to regenerate. The legacy
+`map-gallery-assets.mjs` entry point delegates to the complete generator. It no longer
+replaces the full collection with the former 12-image selection. No Desktop path is
+needed at runtime or when regenerating from the archived sources.
 
-Repeated variants, low-detail screenshots, standalone promotional artwork and unrelated/private material are omitted from the initial selection. Originals remain unchanged. `gallery-provenance.json` maps each published asset to its source filename and SHA-256 digest. `scripts/map-gallery-assets.mjs` regenerates the chosen WebP copies (maximum 1600px without upscaling, auto-oriented and with metadata stripped). The initial total is approximately 962 KB; Next Image supplies responsive smaller derivatives.
+Originals total 6,478,395 bytes; full WebPs total 3,602,710 bytes. The largest thumbnails
+for all 67 items total 1,405,976 bytes. The first 12 largest thumbnails total 318,356
+bytes; browsers choose smaller variants as appropriate and lazy-load offscreen media.
+These are file sizes, not network timing or Core Web Vitals measurements.
 
-## Components and behavior
+## Browsing and accessibility
 
-- `Portfolio` remains the server section wrapper and preserves its original text.
-- `ProductGallery` owns category and selection state, with three/two/one columns across desktop/tablet/mobile. Every card has visible touch-friendly quote actions.
-- `GalleryDialog` loads on demand, provides uncropped image inspection, previous/next controls and keyboard arrows. Native modal focus trapping, Escape, focus restoration and scroll locking support keyboard use.
-- `GalleryActions` reuses the existing WhatsApp helper. Selecting Request Quote opens the existing QuoteForm with the product title and reference filled in. No message is sent automatically.
-- All grid images have descriptive Nairobi/Kenya alt text, lazy loading, reserved dimensions and responsive sizes. Only the explicitly opened lightbox image loads eagerly. Reduced motion preferences suppress hover scaling.
+Show 12 cards initially, then 12 per explicit Show more action. Search and categories
+always query the full collection. This keeps the footer reachable and avoids endlessly
+loading content during scrolling. Empty results offer a Clear filters action. Added
+cards receive keyboard focus at the first new image. Category changes reset the batch.
 
-## Review and maintenance
+Retain three/two/one columns at desktop/tablet/phone sizes, full uncropped image fitting,
+visible quote/WhatsApp controls, native dialog focus trapping, Escape and focus return.
+Lightbox navigation covers all matching results, including cards not yet revealed.
+Only the selected large image loads; no bulk large-image preloading is added.
 
-Review the visible labels when adding or replacing assets. Do not treat mockups as installation photographs or infer a particular production process purely from a logo. Keep the asset manifest, provenance and displayed image dimensions together. Gallery changes are local until committed and pushed; deployment is separate.
+Use a subtle 8px/opacity scroll reveal where CSS view timelines are supported. Other
+browsers show static cards. Reduced-motion users get static cards. Essential content
+is never hidden behind an observer or animation. No animation dependency was added.
+
+Thumbnails are ordinary responsive local images with reserved dimensions and an error
+fallback. Full views use pre-encoded WebPs without Next runtime conversion. This avoids
+cold image-optimization CPU work on the EC2 host. Files must be included in any eventual
+deployment. Future CDN storage can preserve the same manifest structure; no cloud
+resources or deployment changes are included here. Availability still depends on the
+hosting service and backups; local file storage is not an uptime guarantee.

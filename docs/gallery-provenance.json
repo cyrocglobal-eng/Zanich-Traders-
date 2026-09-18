@@ -1,98 +1,538 @@
 [
   {
-    "id": "kenya-polo",
-    "source": "WhatsApp Image 2026-09-07 at 1.04.30 PM.jpeg",
-    "sourceSha256": "9caa3ff81b2234ee69b72e7ba585a1148e217dce59e21a4da701a6f3167e421c",
-    "bytes": 20076,
-    "width": 488,
-    "height": 575
+    "id": "work-01-kenya-lion-t-shirt",
+    "source": "assets/portfolio-originals/1.jpeg",
+    "sourceSha256": "3ae7add102c2f5711afb8ba1a3a5e79feff4e57eae2b4cebdd15f6604619a85a",
+    "bytes": 33312,
+    "width": 768,
+    "height": 1364
   },
   {
-    "id": "branded-pens",
-    "source": "WhatsApp Image 2026-09-06 at 9.43.10 PM (2).jpeg",
-    "sourceSha256": "cd3d95b9bc0917d1d2558c24579e7113c6253a50c759fc6d925303b473e3e25c",
-    "bytes": 48060,
-    "width": 1244,
-    "height": 589
+    "id": "work-02-kenya-brushstroke-t-shirt",
+    "source": "assets/portfolio-originals/2.jpeg",
+    "sourceSha256": "dabc4d025cc699ab2dcc012eb1e57ea389f49d0e197cfe5851d0a1fa390d6e39",
+    "bytes": 47640,
+    "width": 768,
+    "height": 1364
   },
   {
-    "id": "logo-cap",
-    "source": "WhatsApp Image 2026-09-06 at 9.43.09 PM.jpeg",
-    "sourceSha256": "8c49760c7d4af90817c1b19a9440aea3f20b5a71d0ccd2efeeb7e077ce328ee0",
-    "bytes": 14774,
-    "width": 857,
-    "height": 695
+    "id": "work-03-kenya-shield-t-shirt",
+    "source": "assets/portfolio-originals/3.jpeg",
+    "sourceSha256": "e0756175a1b2c4ae3c6e17abd2a0fb1a005a514772b67d2b188b09c25266edc2",
+    "bytes": 28796,
+    "width": 768,
+    "height": 1364
   },
   {
-    "id": "logo-mug",
-    "source": "WhatsApp Image 2026-09-06 at 9.43.10 PM.jpeg",
-    "sourceSha256": "3557cd299ae437ee81e3445d92dfb39757615f61514549d5b60f88ad51a3670b",
-    "bytes": 18458,
-    "width": 657,
-    "height": 640
+    "id": "work-04-volleyball-kenya-t-shirt",
+    "source": "assets/portfolio-originals/4.jpeg",
+    "sourceSha256": "74f2486f16746028f3411ad239d4cd97a711e1d6f55c9b95b3613b118e2dec83",
+    "bytes": 108008,
+    "width": 1492,
+    "height": 1054
   },
   {
-    "id": "printed-safety-vest",
-    "source": "WhatsApp Image 2026-09-06 at 9.43.14 PM (1).jpeg",
-    "sourceSha256": "d564bc55b046dc6316ccaef39cba236f32595ad6f119225e53ddd80f341a574b",
-    "bytes": 110936,
+    "id": "work-05-red-craft-brand-t-shirt",
+    "source": "assets/portfolio-originals/5.jpeg",
+    "sourceSha256": "e75feb090bd1be89456d83eb7a5982c3a78caaaa248597c1c637496b3e9f3423",
+    "bytes": 11188,
+    "width": 469,
+    "height": 434
+  },
+  {
+    "id": "work-06-kenya-flag-cap",
+    "source": "assets/portfolio-originals/6.jpeg",
+    "sourceSha256": "c48202870701f5543fae701d6b5c614bf3265adf56a073a4410762456543495c",
+    "bytes": 15266,
+    "width": 554,
+    "height": 554
+  },
+  {
+    "id": "work-07-rock-art-circuit-t-shirt",
+    "source": "assets/portfolio-originals/7.jpeg",
+    "sourceSha256": "6a3d0cf026c6d0eda9ea7d10e2e791f6eccac7578c22ecc9aeaa87ad5f53a0f0",
+    "bytes": 26672,
+    "width": 776,
+    "height": 481
+  },
+  {
+    "id": "work-08-branded-hoodies-in-use",
+    "source": "assets/portfolio-originals/8.jpeg",
+    "sourceSha256": "eb8d6ca7ee1f10a7f43582d722e51f10407947e47ea4016a0a5e82a2427c3ca6",
+    "bytes": 49510,
+    "width": 704,
+    "height": 670
+  },
+  {
+    "id": "work-09-media-logo-t-shirt",
+    "source": "assets/portfolio-originals/9.jpeg",
+    "sourceSha256": "d306f8becd7eb294f6cfcef96496063ecee6cbcb799cd480a83f1c10645aa1d7",
+    "bytes": 11718,
+    "width": 469,
+    "height": 485
+  },
+  {
+    "id": "work-10-youth-cultural-festival-t-shirt",
+    "source": "assets/portfolio-originals/10.jpeg",
+    "sourceSha256": "b555c270716806c31daf982cc0e4c78ec091be943e90a76ac61bf8761de281fd",
+    "bytes": 33212,
     "width": 1280,
-    "height": 960
+    "height": 853
   },
   {
-    "id": "teardrop-banner",
-    "source": "WhatsApp Image 2026-09-06 at 9.43.07 PM.jpeg",
-    "sourceSha256": "5a10d6a4016a3a3b3945506a164be104f8b98e406d54716206dfe2e49a6f0740",
-    "bytes": 17316,
-    "width": 362,
-    "height": 821
-  },
-  {
-    "id": "branded-notebooks",
-    "source": "WhatsApp Image 2026-09-06 at 9.43.13 PM (1).jpeg",
-    "sourceSha256": "c01f9f13532ed4cc5fd5eec751399c6b631be8368fa27ea39c5f8bc2b6c8f4d0",
-    "bytes": 271612,
-    "width": 1200,
+    "id": "work-11-lake-inspired-black-t-shirt",
+    "source": "assets/portfolio-originals/11.jpeg",
+    "sourceSha256": "87cfb99e3b873c2f65cd20602bb0eb6ec485451bbadb1fa08fa6c2fc0968e677",
+    "bytes": 56728,
+    "width": 1199,
     "height": 1600
   },
   {
-    "id": "patterned-shirts",
-    "source": "WhatsApp Image 2026-09-06 at 9.43.21 PM (1).jpeg",
-    "sourceSha256": "d8ca5ddfcaad0ef96c43c4f917ad30a24eb4d1c925339d67785f105c4127d9ae",
-    "bytes": 308570,
-    "width": 1200,
+    "id": "work-12-lake-inspired-white-t-shirt",
+    "source": "assets/portfolio-originals/12.jpeg",
+    "sourceSha256": "a97d12d80f229e9fb6717d22b6bebe3363cbd4e5aab684c8425c516e4bcbf350",
+    "bytes": 63892,
+    "width": 1199,
     "height": 1600
   },
   {
-    "id": "hospitality-polo",
-    "source": "WhatsApp Image 2026-09-06 at 9.43.05 PM (4).jpeg",
-    "sourceSha256": "58f7195129001439394949f3cb1d5b5463d52b3ec45ebe0d832426680f9763be",
-    "bytes": 11278,
-    "width": 582,
-    "height": 514
+    "id": "work-13-community-ministry-polo",
+    "source": "assets/portfolio-originals/13.jpeg",
+    "sourceSha256": "ddc7ca810d75a639507c854c23644035f82da57d297b46ed36bb69a313993c08",
+    "bytes": 64824,
+    "width": 1478,
+    "height": 788
+  },
+  {
+    "id": "work-14-monochrome-portrait-t-shirt",
+    "source": "assets/portfolio-originals/14.jpeg",
+    "sourceSha256": "55272886d7a12951bb7eb9aa457857d7cf98b8a07eae3f3b1ce963cfa4302266",
+    "bytes": 11066,
+    "width": 577,
+    "height": 659
   },
   {
     "id": "lectern-branding",
-    "source": "WhatsApp Image 2026-09-06 at 9.43.05 PM (2).jpeg",
+    "source": "assets/portfolio-originals/15.jpeg",
     "sourceSha256": "47ff14d461e4bb7cf3ec6d8f2df8d56e3172746dc160b97c5bc2890578a02913",
     "bytes": 33324,
     "width": 417,
     "height": 645
   },
   {
+    "id": "work-16-lectern-branding-alternate-view",
+    "source": "assets/portfolio-originals/16.jpeg",
+    "sourceSha256": "36bd01d0ba4883c83365cda57cbac4cb08e7bb4445389fd761561c0350575373",
+    "bytes": 134496,
+    "width": 1024,
+    "height": 1536
+  },
+  {
+    "id": "hospitality-polo",
+    "source": "assets/portfolio-originals/17.jpeg",
+    "sourceSha256": "58f7195129001439394949f3cb1d5b5463d52b3ec45ebe0d832426680f9763be",
+    "bytes": 11278,
+    "width": 582,
+    "height": 514
+  },
+  {
+    "id": "work-18-motorsport-visor",
+    "source": "assets/portfolio-originals/18.jpeg",
+    "sourceSha256": "bcc271cd3dd32a946e8317848127836ff1b14154b8267387411abe39ff160c29",
+    "bytes": 8894,
+    "width": 476,
+    "height": 471
+  },
+  {
+    "id": "work-19-motorsport-cap",
+    "source": "assets/portfolio-originals/19.jpeg",
+    "sourceSha256": "230aac713187c5c8a79795555cf0eed788bd7bea28c320a1bbd4742432afe655",
+    "bytes": 24678,
+    "width": 700,
+    "height": 690
+  },
+  {
+    "id": "work-20-motorsport-hoodie",
+    "source": "assets/portfolio-originals/20.jpeg",
+    "sourceSha256": "d8cfc7387a7b507ab11ce25bfba118371864748ac25aecf18ae4e47dec95014d",
+    "bytes": 19304,
+    "width": 726,
+    "height": 796
+  },
+  {
+    "id": "teardrop-banner",
+    "source": "assets/portfolio-originals/21.jpeg",
+    "sourceSha256": "5a10d6a4016a3a3b3945506a164be104f8b98e406d54716206dfe2e49a6f0740",
+    "bytes": 17316,
+    "width": 362,
+    "height": 821
+  },
+  {
+    "id": "work-22-black-teardrop-banner",
+    "source": "assets/portfolio-originals/22.jpeg",
+    "sourceSha256": "b4f6390ac52d67aadfbec8777c65aec40de18588f6228604159ac62cf776e489",
+    "bytes": 12478,
+    "width": 276,
+    "height": 615
+  },
+  {
+    "id": "work-23-kenya-t-shirt-colour-collection",
+    "source": "assets/portfolio-originals/23.jpeg",
+    "sourceSha256": "30eb659ef79c5b10a9cc6b473a062534359d743c2b9d914a0726317291eac713",
+    "bytes": 51724,
+    "width": 804,
+    "height": 711
+  },
+  {
+    "id": "work-24-volleyball-apparel-collection",
+    "source": "assets/portfolio-originals/24.jpeg",
+    "sourceSha256": "cfe751a538dec3228df7e7efb8957ed746ff6502ac48c4ec5dd715edd2b55d9c",
+    "bytes": 135872,
+    "width": 1402,
+    "height": 1122
+  },
+  {
+    "id": "work-25-golden-portrait-t-shirt",
+    "source": "assets/portfolio-originals/25.jpeg",
+    "sourceSha256": "38e9a41a8a3b317bd9f4b14b27154cd24fbaad9057c888851eef2bbbeaaee553",
+    "bytes": 58770,
+    "width": 1108,
+    "height": 1280
+  },
+  {
+    "id": "work-26-black-portrait-tribute-t-shirt",
+    "source": "assets/portfolio-originals/26.jpeg",
+    "sourceSha256": "2cb6cd1e331158bc5614f89feaac887c6fbf987f7a8f640be62c4b2933dda949",
+    "bytes": 20366,
+    "width": 693,
+    "height": 765
+  },
+  {
+    "id": "logo-cap",
+    "source": "assets/portfolio-originals/27.jpeg",
+    "sourceSha256": "8c49760c7d4af90817c1b19a9440aea3f20b5a71d0ccd2efeeb7e077ce328ee0",
+    "bytes": 14774,
+    "width": 857,
+    "height": 695
+  },
+  {
+    "id": "work-28-sacco-logo-t-shirt",
+    "source": "assets/portfolio-originals/28.jpeg",
+    "sourceSha256": "4b808986f685f09f60560a8710eb03586c0b622728323356f097e80d779b453d",
+    "bytes": 14428,
+    "width": 873,
+    "height": 731
+  },
+  {
+    "id": "branded-pens",
+    "source": "assets/portfolio-originals/29.jpeg",
+    "sourceSha256": "cd3d95b9bc0917d1d2558c24579e7113c6253a50c759fc6d925303b473e3e25c",
+    "bytes": 48060,
+    "width": 1244,
+    "height": 589
+  },
+  {
+    "id": "work-30-back-print-promotional-t-shirt",
+    "source": "assets/portfolio-originals/30.jpeg",
+    "sourceSha256": "9b4f751098431135f24622f1ad78801e9d661dab95babc816a747b395c665de6",
+    "bytes": 16248,
+    "width": 747,
+    "height": 796
+  },
+  {
+    "id": "logo-mug",
+    "source": "assets/portfolio-originals/31.jpeg",
+    "sourceSha256": "3557cd299ae437ee81e3445d92dfb39757615f61514549d5b60f88ad51a3670b",
+    "bytes": 18458,
+    "width": 657,
+    "height": 640
+  },
+  {
+    "id": "work-32-cartoon-print-t-shirt",
+    "source": "assets/portfolio-originals/32.jpeg",
+    "sourceSha256": "15d5996516477f7fce5f0d52451915ffc3ef418751ed444500c445b378bb5464",
+    "bytes": 17702,
+    "width": 640,
+    "height": 679
+  },
+  {
+    "id": "work-33-girl-and-bear-print-t-shirt",
+    "source": "assets/portfolio-originals/33.jpeg",
+    "sourceSha256": "aa2f81bbadbfb4c0b1396be52088cd596210dae489119ea7de3cfb8281c81bef",
+    "bytes": 23884,
+    "width": 710,
+    "height": 731
+  },
+  {
+    "id": "branded-notebooks",
+    "source": "assets/portfolio-originals/34.jpeg",
+    "sourceSha256": "c01f9f13532ed4cc5fd5eec751399c6b631be8368fa27ea39c5f8bc2b6c8f4d0",
+    "bytes": 271612,
+    "width": 1200,
+    "height": 1600
+  },
+  {
+    "id": "personalised-mugs",
+    "source": "assets/portfolio-originals/35.jpeg",
+    "sourceSha256": "efb1849953893ed9737d0d65ed7ba4057866942f50e5d7457f4d2006dd5ce95e",
+    "bytes": 55226,
+    "width": 736,
+    "height": 1104
+  },
+  {
+    "id": "work-36-burgundy-invitation-suite",
+    "source": "assets/portfolio-originals/36.jpeg",
+    "sourceSha256": "4792c22db13a34ab921195637d7c2cfc007047e3a5470d0c8079e580767e1d17",
+    "bytes": 131852,
+    "width": 1290,
+    "height": 1599
+  },
+  {
+    "id": "work-37-sky-blue-sports-kit",
+    "source": "assets/portfolio-originals/37.jpeg",
+    "sourceSha256": "87d7ce9c703018b04b6a209274036ad63fa5e26c10ae1944d9f8cdc86e5b4521",
+    "bytes": 25346,
+    "width": 819,
+    "height": 710
+  },
+  {
+    "id": "printed-safety-vest",
+    "source": "assets/portfolio-originals/38.jpeg",
+    "sourceSha256": "d564bc55b046dc6316ccaef39cba236f32595ad6f119225e53ddd80f341a574b",
+    "bytes": 110936,
+    "width": 1280,
+    "height": 960
+  },
+  {
+    "id": "work-39-blue-and-white-sports-kit",
+    "source": "assets/portfolio-originals/39.jpeg",
+    "sourceSha256": "0202516eaf0899727d9459ee57e271247d4c3dadde58c40973d83255cffe7df4",
+    "bytes": 29812,
+    "width": 908,
+    "height": 751
+  },
+  {
+    "id": "work-40-safety-vest-production-batch",
+    "source": "assets/portfolio-originals/40.jpeg",
+    "sourceSha256": "a46d667ae0a2a5fea5778ffa2e4fc73e969db35b95d0872d8a716d2fbce7ade3",
+    "bytes": 106000,
+    "width": 1280,
+    "height": 960
+  },
+  {
+    "id": "work-41-branded-jute-tote-front",
+    "source": "assets/portfolio-originals/41.jpeg",
+    "sourceSha256": "89223587f9d54672476bfa7d330d7208ba34dea9bef20db3aed7ddff25fa9b8f",
+    "bytes": 171902,
+    "width": 963,
+    "height": 1280
+  },
+  {
+    "id": "work-42-branded-jute-tote-reverse",
+    "source": "assets/portfolio-originals/42.jpeg",
+    "sourceSha256": "ce9359bb5e7bb4cf8d9de428699586016054bc07781817444e72cac395d80ac6",
+    "bytes": 120362,
+    "width": 1280,
+    "height": 963
+  },
+  {
+    "id": "work-43-community-group-polo",
+    "source": "assets/portfolio-originals/43.jpeg",
+    "sourceSha256": "3782154c7d3240c5236783e74dc38aeed94b131949d9a1ffc6404ae70b88816e",
+    "bytes": 13504,
+    "width": 521,
+    "height": 690
+  },
+  {
+    "id": "work-44-grey-message-polo",
+    "source": "assets/portfolio-originals/44.jpeg",
+    "sourceSha256": "18e56dd2adaaa75034accf4253eafc017dab97acf5be5d88c2249882383dc1f4",
+    "bytes": 60890,
+    "width": 652,
+    "height": 713
+  },
+  {
+    "id": "work-45-contrast-trim-message-polo",
+    "source": "assets/portfolio-originals/45.jpeg",
+    "sourceSha256": "53e628451d3bac45160759aa5f9accd48192b3ef8fdb1bd31ceadbdc40752131",
+    "bytes": 82310,
+    "width": 941,
+    "height": 772
+  },
+  {
+    "id": "work-46-campaign-polo-artwork",
+    "source": "assets/portfolio-originals/46.jpeg",
+    "sourceSha256": "f991936816aa98ff52a2a6b46bf478ec05ca52612f1b2e47fb5387a155e6ca31",
+    "bytes": 17946,
+    "width": 647,
+    "height": 840
+  },
+  {
+    "id": "work-47-orange-work-vest-front",
+    "source": "assets/portfolio-originals/47.jpeg",
+    "sourceSha256": "c0fc6e3993c8e7fbc80cd44dd4d928e34e2ff75ec13a90b001027e338a4bf46c",
+    "bytes": 34562,
+    "width": 1311,
+    "height": 789
+  },
+  {
+    "id": "work-48-orange-work-vest-reverse",
+    "source": "assets/portfolio-originals/48.jpeg",
+    "sourceSha256": "7ebc0ae7c737d9702cb72b7a1cf23d39c9749f60f9b6e1800ae92da519bfca5f",
+    "bytes": 29264,
+    "width": 662,
+    "height": 787
+  },
+  {
+    "id": "work-49-product-container-label",
+    "source": "assets/portfolio-originals/49.jpeg",
+    "sourceSha256": "563026ac0079e827aea895cf49bd3959eef49438e73c0190c33213c3104bd70c",
+    "bytes": 16640,
+    "width": 453,
+    "height": 610
+  },
+  {
+    "id": "work-50-campaign-poster-layout",
+    "source": "assets/portfolio-originals/50.jpeg",
+    "sourceSha256": "d06e7be43224cecaa501754268b04577e5151e5b3c0d8f1a32d2ffef4ed9202e",
+    "bytes": 142504,
+    "width": 1553,
+    "height": 1013
+  },
+  {
+    "id": "work-51-travel-brand-hoodie",
+    "source": "assets/portfolio-originals/51.jpeg",
+    "sourceSha256": "934e2a0de7fc359edf692c54e3d0e8a8a124562ec87f8eb72ed519a0aa0e9ac9",
+    "bytes": 39598,
+    "width": 1425,
+    "height": 1600
+  },
+  {
+    "id": "work-52-business-contact-artwork",
+    "source": "assets/portfolio-originals/52.jpeg",
+    "sourceSha256": "62ac36d4b0568d5c598309a62219fbaa973f38a1fef3a80d584a9467729ea35c",
+    "bytes": 20274,
+    "width": 617,
+    "height": 673
+  },
+  {
+    "id": "work-53-personalised-message-t-shirt",
+    "source": "assets/portfolio-originals/53.jpeg",
+    "sourceSha256": "1a4994d030046c43e1bb3173c81e8f1e20e1ab028e7646dfbfd4ba0b8dbf31a5",
+    "bytes": 40428,
+    "width": 800,
+    "height": 1600
+  },
+  {
+    "id": "work-54-back-print-name-t-shirt",
+    "source": "assets/portfolio-originals/54.jpeg",
+    "sourceSha256": "29281ad3298f992b6e77e4754ab151aeccef7967c83846027fa05084d421a88d",
+    "bytes": 53040,
+    "width": 1303,
+    "height": 1207
+  },
+  {
+    "id": "patterned-shirts",
+    "source": "assets/portfolio-originals/55.jpeg",
+    "sourceSha256": "d8ca5ddfcaad0ef96c43c4f917ad30a24eb4d1c925339d67785f105c4127d9ae",
+    "bytes": 308570,
+    "width": 1200,
+    "height": 1600
+  },
+  {
     "id": "field-vest-design",
-    "source": "WhatsApp Image 2026-09-06 at 9.43.21 PM (2).jpeg",
+    "source": "assets/portfolio-originals/56.jpeg",
     "sourceSha256": "ff5273abf158c7958b526318faacd144f7abdd34644275dcde4c78d60b0847a8",
     "bytes": 75410,
     "width": 1209,
     "height": 716
   },
   {
-    "id": "personalised-mugs",
-    "source": "WhatsApp Image 2026-09-06 at 9.43.13 PM (2).jpeg",
-    "sourceSha256": "efb1849953893ed9737d0d65ed7ba4057866942f50e5d7457f4d2006dd5ce95e",
-    "bytes": 55226,
-    "width": 736,
-    "height": 1104
+    "id": "work-57-field-vest-alternate-artwork",
+    "source": "assets/portfolio-originals/57.jpeg",
+    "sourceSha256": "d00ab763dbbb0ff171e4c91ef4072807d6bb1e734811d041218274708ea01569",
+    "bytes": 73512,
+    "width": 1297,
+    "height": 706
+  },
+  {
+    "id": "work-58-orange-campaign-cap",
+    "source": "assets/portfolio-originals/58.jpeg",
+    "sourceSha256": "7764bb3493eabaf94b93dd75978198d0ce468cd7fecea71137a02e2de7b14b67",
+    "bytes": 79640,
+    "width": 893,
+    "height": 826
+  },
+  {
+    "id": "work-59-catering-apron",
+    "source": "assets/portfolio-originals/59.jpeg",
+    "sourceSha256": "3a1bafb8130de172742e845b64f059a90a5fac18f3bd117d18d67f9d4310f76e",
+    "bytes": 30886,
+    "width": 1080,
+    "height": 1080
+  },
+  {
+    "id": "work-60-branded-chef-hat",
+    "source": "assets/portfolio-originals/60.jpeg",
+    "sourceSha256": "5893cefcc979908982b998800bcc950d659c35f083e79f1edabbfa6dfb42f97f",
+    "bytes": 72550,
+    "width": 1600,
+    "height": 1600
+  },
+  {
+    "id": "work-61-catering-t-shirt-front-and-back",
+    "source": "assets/portfolio-originals/61.jpeg",
+    "sourceSha256": "7d5552859e7cfd5faf1a17b80f17446f9a7f28e4b709200b80107ba41494db6c",
+    "bytes": 49398,
+    "width": 1600,
+    "height": 960
+  },
+  {
+    "id": "kenya-polo",
+    "source": "assets/portfolio-originals/62.jpeg",
+    "sourceSha256": "9caa3ff81b2234ee69b72e7ba585a1148e217dce59e21a4da701a6f3167e421c",
+    "bytes": 20076,
+    "width": 488,
+    "height": 575
+  },
+  {
+    "id": "work-63-red-kenya-polo",
+    "source": "assets/portfolio-originals/63.jpeg",
+    "sourceSha256": "844a85e79ceefe8583babf680c5d6fb4fa9730144fbfa8bcc4aadcc29f42e364",
+    "bytes": 8350,
+    "width": 299,
+    "height": 324
+  },
+  {
+    "id": "work-64-helicopter-sunset-t-shirt",
+    "source": "assets/portfolio-originals/64.jpeg",
+    "sourceSha256": "7312ea8fce1ba5b1ecd732182f4e0deceeb3e90e6cf8aad43aced12457dc6b33",
+    "bytes": 28336,
+    "width": 1500,
+    "height": 1402
+  },
+  {
+    "id": "work-65-helicopter-heartbeat-t-shirt",
+    "source": "assets/portfolio-originals/65.jpeg",
+    "sourceSha256": "1324aea8bdd9adea5c86102e6ae4ec584f6f754a12eaa86c2ea1d6b1b883dcd7",
+    "bytes": 7596,
+    "width": 442,
+    "height": 450
+  },
+  {
+    "id": "work-66-kenya-wildlife-t-shirt",
+    "source": "assets/portfolio-originals/66.jpeg",
+    "sourceSha256": "e67a4ff350a4efb3a55b6dcf0737a2940cb0904c331f42d74953ef998b69a867",
+    "bytes": 13456,
+    "width": 542,
+    "height": 584
+  },
+  {
+    "id": "work-67-helicopter-services-polo",
+    "source": "assets/portfolio-originals/67.jpeg",
+    "sourceSha256": "f6332a8d675727a4945be17bd80ad2ecb0efa29014828c7de3a7c092a5ad7f8a",
+    "bytes": 17036,
+    "width": 1096,
+    "height": 748
   }
 ]

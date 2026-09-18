@@ -178,3 +178,11 @@ dependencies. Reduced motion removes transforms, smooth scrolling and decorative
 - Maintain keyboard access, 44px minimum icon targets, readable contrast and stable media slots.
 - Don't change backend, AWS, secrets or production settings as part of this redesign.
 - Don't push or release until the owner has reviewed the local result.
+
+## Portfolio expansion
+
+The full 67-image portfolio follows the existing paper, ruled-grid and caption system.
+Use search and category filters plus explicit 12-card batches to keep the page usable.
+Cards use prebuilt responsive thumbnails and on-demand full-image inspection. Subtle
+CSS view-timeline reveals are progressive enhancement; unsupported browsers and reduced
+motion keep static, visible cards. Keep the original image proportions without cropping.
