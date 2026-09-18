@@ -1,0 +1,22 @@
+.header { position:fixed; z-index:50; top:16px; left:50%; transform:translateX(-50%); width:calc(100% - 40px); max-width:1080px; color:var(--foreground); }
+.bar { display:flex; align-items:center; justify-content:space-between; gap:24px; min-height:68px; padding:9px 12px 9px 22px; background:#fff; border:1px solid #e2e2df; border-radius:28px; box-shadow:0 5px 22px #0a0a0b0a; }
+.logo { flex-shrink:0; border-radius:6px; }
+.desktop { display:flex; align-items:center; gap:4px; }
+.desktop > li > a,.desktop > li > button { display:flex; align-items:center; justify-content:center; gap:5px; min-height:44px; padding:0 12px; border-radius:10px; font-size:13px; font-weight:500; }
+.desktop > li > a:hover,.desktop > li > button:hover,.desktop button[aria-expanded=true] { background:#f4f4f2; color:var(--action); }
+.controls { display:flex; align-items:center; gap:6px; }
+.quote { display:inline-flex; align-items:center; justify-content:center; gap:12px; min-height:46px; padding:0 20px; border-radius:18px; background:var(--action); color:#fff; font-size:13px; font-weight:600; white-space:nowrap; transition:background .2s; }
+.quote:hover { background:#a51717; }
+.mobileQuote,.menuToggle { display:none; }
+.serviceItem { position:relative; }
+.servicePanel { position:absolute; top:calc(100% + 20px); left:50%; transform:translateX(-50%); width:520px; padding:24px; background:#fff; border:1px solid var(--line); border-radius:20px; box-shadow:0 16px 40px #0a0a0b14; }
+.panelLabel { font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--secondary); margin-bottom:14px; }
+.serviceGrid { display:grid; grid-template-columns:1fr 1fr; gap:4px 12px; }
+.serviceGrid a { min-height:46px; display:flex; align-items:center; justify-content:space-between; gap:10px; padding:9px; font-size:13px; border-radius:8px; }
+.serviceGrid a:hover { background:#f4f4f2; color:var(--action); }
+.serviceGrid svg { flex-shrink:0; }
+.allServices { display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--line); margin-top:14px; padding-top:16px; min-height:44px; font-size:13px; font-weight:600; color:var(--action); }
+.mobilePanel { display:none; }
+@media(max-width:1023px) { .desktop { display:none; } .menuToggle { display:flex; align-items:center; justify-content:center; height:44px; width:44px; border-radius:14px; } .menuToggle:hover { background:#f4f4f2; } .mobilePanel { display:block; margin-top:10px; padding:16px; border:1px solid var(--line); border-radius:22px; background:#fff; box-shadow:0 16px 40px #0a0a0b14; max-height:calc(100dvh - 112px); overflow-y:auto; overscroll-behavior:contain; } .mobilePanel > a,.mobilePanel > button { display:flex; align-items:center; justify-content:space-between; width:100%; padding:12px; min-height:48px; font-size:15px; border-radius:8px; } .mobilePanel > a:hover,.mobilePanel > button:hover { background:#f4f4f2; } .mobileServices { padding:12px; background:#fafaf9; border-radius:12px; } }
+@media(max-width:540px) { .header { top:12px; width:calc(100% - 24px); } .bar { padding:8px 8px 8px 13px; gap:8px; border-radius:23px; min-height:64px; } .logo svg { width:29px; height:29px; } .logo > span { gap:7px; } .logo > span > span > span:first-child { font-size:12px; } .logo > span > span > span:last-child { font-size:7px; } .desktopQuote { display:none; } .mobileQuote { display:inline; } .quote { padding:0 12px; gap:6px; border-radius:15px; min-height:44px; font-size:12px; } .serviceGrid { grid-template-columns:1fr; } }
+@media(prefers-reduced-motion:reduce) { .quote { transition:none; } }

@@ -21,7 +21,16 @@ Screenshots and Playwright CLI review scripts: .local/ui-review/ (ignored).
 Verified on 19 September: lint, TypeScript, all 17 tests and production build pass.
 Browser checks cover all 67 entries, batches, focus, search, empty state, quote
 prefill, lightbox navigation, reduced motion and widths 360/390/768/1440.
-The local production preview is http://127.0.0.1:3001/#portfolio.
+The local production preview is http://127.0.0.1:3001/.
+
+Hero/navbar follow-up: owner selected Signature Collection in HERO-NAV-ROADMAP.md.
+Implemented a floating rounded navbar, eight-service dropdown, mobile accordion,
+revised headline and captioned polo/mug/notebook composition. The existing fonts,
+logo and palette are retained. Navbar quote uses /contact#contact; hero quote uses
+the home contact anchor. No backend changes. Browser review scripts and screenshots
+are in .local/ui-review/hero-nav-*. TypeScript, 17 tests and changed-file lint pass.
+Browser checks cover five widths, dropdown/accordion, keyboard focus, outside
+dismissal, service navigation and reduced motion. See HERO-NAV-ROADMAP.md for detail.
 
 No push, AWS changes, database changes, domain changes or production release occurred.
 Next step: owner visual review, then separately authorized

@@ -126,11 +126,11 @@ Small uppercase labels describe sections; don't apply tracking to long body copy
 ## Layout
 
 1280px maximum container; 20px phone, 32px tablet and 40px desktop gutters. Sections use
-64px phone and 96px desktop vertical spacing. The hero pairs the existing headline with
-a rectangular product composition and captions. Service lists use two desktop columns,
+64px phone and 96px desktop vertical spacing. The selected hero pairs a rewritten headline
+with a rectangular product composition and captions. Service lists use two desktop columns,
 one on mobile. Gallery stays three/two/one columns with all current filters and images.
 Quote/contact uses two columns on desktop and a single flow below 1024px. Preserve route
-anchors and sufficient scroll margin for the 72px fixed navigation.
+anchors and 104px scroll padding for the floating navigation.
 
 ## Elevation & Depth
 
@@ -160,8 +160,13 @@ fitting to avoid cropping evidence. Captions and quick actions remain visible on
 The native dialog retains keyboard navigation, Escape, focus return and scroll locking.
 Show content transitions only, not layout movement or delayed access to controls.
 
-Navigation: fixed 72px bar, clear underline/focus feedback, mobile disclosure with its
-existing Escape handler. Footer and all standalone pages share the same scale and rules.
+Navigation: owner-approved floating white bar, 1080px maximum width, 68px desktop
+height and 16px top inset. Use 28px corners here as an intentional exception to the
+square image system. Desktop links are About, Services, Work and Contact, with a
+red Get a Quote action. Services opens a two-column disclosure of eight services
+and their overview. Mobile retains the logo, Quote and menu control; services use
+an accordion. Preserve keyboard focus, Escape, outside dismissal and page anchors.
+Footer and standalone pages retain the broader type and spacing system.
 Support is a native dialog with matching controls; preserve unavailable, chat, quote and
 feedback modes and all existing external contact links.
 
@@ -186,3 +191,18 @@ Use search and category filters plus explicit 12-card batches to keep the page u
 Cards use prebuilt responsive thumbnails and on-demand full-image inspection. Subtle
 CSS view-timeline reveals are progressive enhancement; unsupported browsers and reduced
 motion keep static, visible cards. Keep the original image proportions without cropping.
+
+## Selected hero direction, 19 September 2026
+
+The owner selected Signature Collection from docs/HERO-NAV-ROADMAP.md. Preserve a
+bright paper canvas, large black Sora headline, red quote action, underlined work
+link and a 45/55 desktop text/media balance. The headline is “Your brand. Beautifully
+brought to life.” Use three genuine portfolio assets: 67 (polo design), 31 (mug photo)
+and 34 (notebook photo). Retain their full proportions, backgrounds and provenance
+captions. Stack copy before media on mobile. Media has reserved dimensions and a
+short entrance that is disabled for reduced motion. No video or synthetic project
+imagery is required. Replace the former placeholder hero metrics with a service line.
+
+Sources: owner-selected concept, established Zanich identity, supplied portfolio,
+Refero bundled typography/craft/visual-workflow guides. Live Refero search still
+returned NO_SUBSCRIPTION; no new live style reference is claimed.
