@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { publicSite } from "@/lib/seo/config";
 
 const optional = z.string().optional();
 const schema = z.object({
@@ -23,12 +24,25 @@ export function serverConfig() {
     ),
   );
 }
+function intakeOriginReady() {
+  try {
+    const url = new URL(process.env.NEXT_PUBLIC_SITE_URL || publicSite.url);
+    return url.protocol === "https:" || (
+      process.env.NODE_ENV !== "production" &&
+      url.protocol === "http:" &&
+      ["localhost", "127.0.0.1", "[::1]"].includes(url.hostname)
+    );
+  } catch {
+    return false;
+  }
+}
 export const quoteAvailable = () =>
   Boolean(
-    process.env.DATABASE_URL &&
-    process.env.RESEND_API_KEY &&
-    process.env.EMAIL_FROM &&
-    process.env.OUTBOX_SECRET,
+    intakeOriginReady() &&
+    process.env.DATABASE_URL?.trim() &&
+    process.env.RESEND_API_KEY?.trim() &&
+    process.env.EMAIL_FROM?.trim() &&
+    process.env.OUTBOX_SECRET?.trim(),
   );
 export const agentAvailable = () =>
   Boolean(
