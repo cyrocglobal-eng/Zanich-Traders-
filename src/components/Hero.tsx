@@ -1,156 +1,54 @@
-"use client";
-
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { site } from "@/content/site";
+import { galleryItems } from "@/content/gallery";
+import styles from "./Hero.module.css";
+
+const collection = [
+  { id: "work-67-helicopter-services-polo", label: "01 / Branded apparel" },
+  { id: "logo-mug", label: "02 / Everyday merchandise" },
+  { id: "branded-notebooks", label: "03 / Personal touches" },
+];
 
 export function Hero() {
-  const reduce = useReducedMotion();
   const { hero } = site;
-
-  const ease = [0.16, 1, 0.3, 1] as const;
-
   return (
-    <section
-      id="top"
-      className="relative overflow-hidden bg-ink text-white"
-    >
-      {/* Ambient glows */}
-      <div className="pointer-events-none absolute -left-40 top-0 h-[520px] w-[520px] rounded-full bg-brand/25 blur-[130px]" />
-      <div className="pointer-events-none absolute right-0 top-1/3 h-[420px] w-[420px] rounded-full bg-brand/10 blur-[120px]" />
-      <div className="pointer-events-none absolute inset-0 bg-grain opacity-[0.04] mix-blend-overlay" />
-      {/* Grid lines */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.06]"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)",
-          backgroundSize: "72px 72px",
-        }}
-      />
-
-      <div className="container-x relative grid gap-14 pb-20 pt-32 md:pt-40 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10 lg:pb-28">
-        {/* Copy */}
-        <div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-white/80 backdrop-blur"
-          >
-            <Sparkles className="h-3.5 w-3.5 text-brand" />
-            {hero.eyebrow}
-          </motion.div>
-
-          <h1 className="font-display text-[2.6rem] font-800 leading-[1.02] tracking-tightest text-balance sm:text-6xl lg:text-[4.4rem]">
-            {hero.headline.map((line, i) => (
-              <motion.span
-                key={line}
-                className="block"
-                initial={{ opacity: 0, y: 28 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.1 + i * 0.12, ease }}
-              >
-                {i === hero.headline.length - 1 ? (
-                  <span className="relative">
-                    {line}
-                    <motion.span
-                      className="absolute -bottom-1.5 left-0 h-[6px] w-full origin-left rounded-full bg-brand"
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: 1 }}
-                      transition={{ duration: 0.8, delay: 0.65, ease }}
-                    />
-                  </span>
-                ) : (
-                  line
-                )}
-              </motion.span>
-            ))}
-          </h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.4, ease }}
-            className="mt-7 max-w-xl text-lg leading-relaxed text-white/70 text-pretty"
-          >
-            {hero.sub}
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.55, ease }}
-            className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
-          >
-            <a href={hero.primaryCta.href} className="btn-primary group">
-              {hero.primaryCta.label}
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </a>
-            <a href={hero.secondaryCta.href} className="btn-ghost">
-              {hero.secondaryCta.label}
-            </a>
-          </motion.div>
-
-          {/* Stats */}
-          <motion.dl
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.7, ease }}
-            className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-white/10 pt-8"
-          >
-            {hero.stats.map((s) => (
-              <div key={s.label}>
-                <dt className="font-display text-3xl font-800 tracking-tight text-white lg:text-4xl">
-                  {s.value}
-                </dt>
-                <dd className="mt-1 text-xs leading-snug text-white/55">{s.label}</dd>
-              </div>
-            ))}
-          </motion.dl>
-        </div>
-
-        {/* Visual */}
-        <motion.div
-          initial={{ opacity: 0, scale: reduce ? 1 : 0.94, y: reduce ? 0 : 24 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3, ease }}
-          className="relative"
-        >
-          <div className="relative overflow-hidden rounded-[26px] border border-white/10 shadow-2xl shadow-black/60">
-            <Image
-              src="/images/hero-merch.jpg"
-              alt="Branded corporate promotional merchandise — mug, notebook, bottle, apparel and lanyard by Zanich General Traders"
-              width={1408}
-              height={768}
-              priority
-              sizes="(max-width: 1024px) 100vw, 48vw"
-              className="h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/40 via-transparent to-transparent" />
-          </div>
-
-          {/* Floating tagline card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.9, ease }}
-            className="absolute -bottom-5 -left-3 flex items-center gap-3 rounded-2xl border border-white/10 bg-ink-soft/90 px-5 py-4 shadow-xl backdrop-blur-md sm:-left-6"
-          >
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand text-lg font-800 text-white">
-              Z
-            </span>
-            <div className="leading-tight">
-              <p className="text-sm font-semibold text-white">{site.tagline}</p>
-              <p className="text-xs text-white/55">Nairobi, Kenya</p>
+    <section id="top" className={styles.hero} aria-labelledby="hero-title">
+      <div className="container-x">
+        <div className={styles.layout}>
+          <div className={styles.copy}>
+            <p className={styles.eyebrow}><span aria-hidden="true" />Printing & branding · Nairobi</p>
+            <h1 id="hero-title">{hero.headline.map(line => <span key={line}>{line}{" "}</span>)}</h1>
+            <p className={styles.intro}>{hero.sub}</p>
+            <div className={styles.actions}>
+              <a href={hero.primaryCta.href} className="btn-primary">{hero.primaryCta.label}<ArrowRight size={18} aria-hidden="true" /></a>
+              <a href={hero.secondaryCta.href} className={styles.secondary}>{hero.secondaryCta.label}<ArrowUpRight size={18} aria-hidden="true" /></a>
             </div>
-          </motion.div>
-        </motion.div>
+            <p className={styles.note}>For your business. Your event. Your next idea.</p>
+          </div>
+          <div className={styles.collection} aria-label="Selected portfolio examples">
+            <div className={styles.collectionHeading}><span>THE ZANICH COLLECTION</span><span>Selected work / 01—03</span></div>
+            <div className={styles.images}>
+              {collection.map((entry, index) => {
+                const item = galleryItems.find(item => item.id === entry.id)!;
+                const rendition = item.thumbnails[item.thumbnails.length - 1];
+                return (
+                  <figure key={item.id} className={index === 0 ? styles.featured : styles.supporting}>
+                    <div className={styles.imageFrame}>
+                      <Image src={rendition.src} alt={item.alt} width={rendition.width}
+                        height={Math.round(rendition.width * item.height / item.width)}
+                        unoptimized loading={index === 0 ? "eager" : "lazy"}
+                        fetchPriority={index === 0 ? "high" : "auto"} />
+                    </div>
+                    <figcaption><span>{entry.label}</span><small>{item.kind}</small></figcaption>
+                  </figure>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+        <div className={styles.footer}><span>Good ideas deserve a great finish.</span><p>Print <i aria-hidden="true" /> Apparel <i aria-hidden="true" /> Merchandise <i aria-hidden="true" /> Signage</p></div>
       </div>
-
-      {/* bottom fade into next section */}
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
     </section>
   );
 }

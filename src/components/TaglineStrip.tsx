@@ -1,28 +1,12 @@
+import { ArrowUpRight } from "lucide-react";
 import { site } from "@/content/site";
 
 export function TaglineStrip() {
-  const words = [
-    site.tagline,
-    "Printing",
-    "Branding",
-    "Promotional Products",
-    "Get Noticed",
-  ];
-  const loop = [...words, ...words, ...words];
-
   return (
-    <div className="relative overflow-hidden border-y border-ink/10 bg-brand py-4">
-      <div className="flex w-max animate-marquee items-center gap-8 will-change-transform">
-        {loop.map((w, i) => (
-          <span key={i} className="flex items-center gap-8">
-            <span className="whitespace-nowrap font-display text-sm font-700 uppercase tracking-[0.2em] text-white">
-              {w}
-            </span>
-            <span className="text-white/50" aria-hidden="true">
-              ✦
-            </span>
-          </span>
-        ))}
+    <div className="bg-brand-600 text-white">
+      <div className="container-x flex flex-wrap items-center justify-between gap-4 py-5">
+        <p className="font-display text-lg font-600 tracking-tight sm:text-2xl">{site.tagline}</p>
+        <a href="#services" className="inline-flex min-h-11 items-center gap-3 text-sm font-semibold underline underline-offset-4">Printing · Branding · Promotional Products<ArrowUpRight aria-hidden="true" className="h-5 w-5 shrink-0" /></a>
       </div>
     </div>
   );

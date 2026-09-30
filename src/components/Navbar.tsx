@@ -1,117 +1,81 @@
 "use client";
-
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X, Phone } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
 import { site } from "@/content/site";
+import { services } from "@/content/services";
 import { Logo } from "./Logo";
+import styles from "./Navbar.module.css";
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const header = useRef<HTMLElement>(null);
+  const toggle = useRef<HTMLButtonElement>(null);
+  const serviceToggle = useRef<HTMLButtonElement>(null);
+  const mobileServiceToggle = useRef<HTMLButtonElement>(null);
+  function closeAll() { setOpen(false); setServicesOpen(false); }
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    function keydown(event: KeyboardEvent) {
+      if (event.key !== "Escape") return;
+      if (servicesOpen) {
+        setServicesOpen(false);
+        (open ? mobileServiceToggle : serviceToggle).current?.focus();
+      } else if (open) { setOpen(false); toggle.current?.focus(); }
+    }
+    function outside(event: PointerEvent) {
+      if (!header.current?.contains(event.target as Node)) { setOpen(false); setServicesOpen(false); }
+    }
+    const breakpoint = window.matchMedia("(min-width: 1024px)");
+    function resize() { setOpen(false); setServicesOpen(false); }
+    document.addEventListener("keydown", keydown);
+    document.addEventListener("pointerdown", outside);
+    breakpoint.addEventListener("change", resize);
     return () => {
-      document.body.style.overflow = "";
+      document.removeEventListener("keydown", keydown);
+      document.removeEventListener("pointerdown", outside);
+      breakpoint.removeEventListener("change", resize);
     };
-  }, [open]);
+  }, [open, servicesOpen]);
+
+  const serviceLinks = <>
+    <p className={styles.panelLabel}>Find the right finish</p>
+    <ul className={styles.serviceGrid}>{services.map(service => <li key={service.slug}>
+      <Link href={`/services/${service.slug}`} onClick={closeAll}>{service.name}<ArrowUpRight size={15} aria-hidden="true" /></Link>
+    </li>)}</ul>
+    <Link href="/services" className={styles.allServices} onClick={closeAll}>Explore all services <ArrowUpRight size={15} aria-hidden="true" /></Link>
+  </>;
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "border-b border-ink/10 bg-paper/85 backdrop-blur-xl"
-          : "border-b border-transparent bg-transparent"
-      }`}
-    >
-      <nav className="container-x flex h-[72px] items-center justify-between" aria-label="Primary">
-        <a href="#top" className="shrink-0" aria-label={`${site.name} home`}>
-          <Logo />
-        </a>
-
-        <ul className="hidden items-center gap-1 lg:flex">
-          {site.nav.map((item) => (
-            <li key={item.href}>
-              <a
-                href={item.href}
-                className="group relative rounded-full px-4 py-2 text-sm font-medium text-ink/70 transition-colors hover:text-ink"
-              >
-                {item.label}
-                <span className="absolute inset-x-4 -bottom-0.5 h-px origin-left scale-x-0 bg-brand transition-transform duration-300 group-hover:scale-x-100" />
-              </a>
-            </li>
-          ))}
+    <header ref={header} className={styles.header} onBlur={event => {
+      if (!event.currentTarget.contains(event.relatedTarget as Node | null)) closeAll();
+    }}>
+      <nav className={styles.bar} aria-label="Primary">
+        <Link href="/" className={styles.logo} aria-label={`${site.name} home`} onClick={closeAll}><Logo /></Link>
+        <ul className={styles.desktop}>
+          <li><Link href="/#about">About</Link></li>
+          <li className={styles.serviceItem}>
+            <button type="button" ref={serviceToggle} aria-expanded={servicesOpen} aria-controls="desktop-services" onClick={() => setServicesOpen(value => !value)}>Services<ChevronDown size={14} aria-hidden="true" /></button>
+            {servicesOpen && !open && <div id="desktop-services" className={styles.servicePanel}>{serviceLinks}</div>}
+          </li>
+          <li><Link href="/#portfolio">Work</Link></li>
+          <li><Link href="/#contact">Contact</Link></li>
         </ul>
-
-        <div className="hidden items-center gap-3 lg:flex">
-          <a
-            href={site.contact.phoneHref}
-            className="flex items-center gap-2 text-sm font-medium text-ink/70 transition-colors hover:text-ink"
-          >
-            <Phone className="h-4 w-4 text-brand" />
-            {site.contact.phone}
-          </a>
-          <a href="#contact" className="btn-primary !px-6 !py-2.5">
-            Get a Quote
-          </a>
+        <div className={styles.controls}>
+          <Link href="/contact#contact" className={styles.quote} onClick={closeAll}><span className={styles.desktopQuote}>Get a Quote</span><span className={styles.mobileQuote}>Quote</span><ArrowUpRight size={16} aria-hidden="true" /></Link>
+          <button ref={toggle} type="button" className={styles.menuToggle} aria-expanded={open} aria-controls="mobile-navigation" aria-label={open ? "Close menu" : "Open menu"} onClick={() => { setOpen(value => !value); setServicesOpen(false); }}>{open ? <X size={20} /> : <Menu size={20} />}</button>
         </div>
-
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          className="flex h-11 w-11 items-center justify-center rounded-full border border-ink/15 text-ink lg:hidden"
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
       </nav>
-
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden border-t border-ink/10 bg-paper lg:hidden"
-          >
-            <ul className="container-x flex flex-col gap-1 py-4">
-              {site.nav.map((item) => (
-                <li key={item.href}>
-                  <a
-                    href={item.href}
-                    onClick={() => setOpen(false)}
-                    className="block rounded-xl px-4 py-3 text-base font-medium text-ink/80 transition-colors hover:bg-ink/5 hover:text-ink"
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-              <li className="mt-2 flex flex-col gap-3 px-1">
-                <a
-                  href={site.contact.phoneHref}
-                  className="flex items-center gap-2 px-3 text-sm font-medium text-ink/70"
-                >
-                  <Phone className="h-4 w-4 text-brand" />
-                  {site.contact.phone}
-                </a>
-                <a href="#contact" onClick={() => setOpen(false)} className="btn-primary w-full">
-                  Get a Free Quote
-                </a>
-              </li>
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {open && <nav id="mobile-navigation" aria-label="Mobile" className={styles.mobilePanel}>
+        <Link href="/#about" onClick={closeAll}>About Zanich</Link>
+        <button ref={mobileServiceToggle} type="button" aria-expanded={servicesOpen} aria-controls="mobile-services" onClick={() => setServicesOpen(value => !value)}>Services<ChevronDown size={18} aria-hidden="true" /></button>
+        {servicesOpen && <div id="mobile-services" className={styles.mobileServices}>{serviceLinks}</div>}
+        <Link href="/#portfolio" onClick={closeAll}>Our work</Link>
+        <Link href="/#why" onClick={closeAll}>Why Zanich</Link>
+        <Link href="/#clients" onClick={closeAll}>Our clients</Link>
+        <Link href="/#contact" onClick={closeAll}>Contact</Link>
+      </nav>}
     </header>
   );
 }

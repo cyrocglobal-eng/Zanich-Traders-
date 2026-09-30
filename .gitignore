@@ -27,6 +27,13 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env
+.env.*
+!.env.example
+/.local/
+/.playwright-cli/
+/.sites-runtime/
+/test-results/
 
 # vercel
 .vercel

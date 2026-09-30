@@ -1,0 +1,33 @@
+[Unit]
+Description=Zanich Next.js application
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=120
+StartLimitBurst=5
+
+[Service]
+Type=simple
+User=zanich
+Group=zanich
+WorkingDirectory=/srv/zanich/current
+EnvironmentFile=/etc/zanich/app.env
+EnvironmentFile=-/etc/zanich/database.env
+Environment=NODE_ENV=production
+Environment=NODE_OPTIONS=--max-old-space-size=512
+Environment=MALLOC_ARENA_MAX=2
+ExecStart=/usr/bin/node node_modules/next/dist/bin/next start --hostname 127.0.0.1 --port 3000
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/srv/zanich/current/.next/cache
+UMask=0027
+MemoryHigh=650M
+MemoryMax=800M
+SyslogIdentifier=zanich
+
+[Install]
+WantedBy=multi-user.target

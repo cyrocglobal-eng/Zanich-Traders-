@@ -1,0 +1,919 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Zanich private PostgreSQL for an existing EC2 host. HTTP preview first; domain and HTTPS follow before customer intake.",
+  "Metadata": {
+    "AWSToolsMetrics": {
+      "AWSAgentToolkit": "aws-cloudformation@2"
+    }
+  },
+  "Parameters": {
+    "VpcId": {
+      "Type": "AWS::EC2::VPC::Id"
+    },
+    "AppInstanceId": {
+      "Type": "AWS::EC2::Instance::Id"
+    },
+    "AvailabilityZoneA": {
+      "Type": "AWS::EC2::AvailabilityZone::Name"
+    },
+    "AvailabilityZoneB": {
+      "Type": "AWS::EC2::AvailabilityZone::Name"
+    },
+    "DatabaseSubnetCidrA": {
+      "Type": "String",
+      "Default": "172.31.240.0/24",
+      "AllowedPattern": "[0-9./]+"
+    },
+    "DatabaseSubnetCidrB": {
+      "Type": "String",
+      "Default": "172.31.241.0/24",
+      "AllowedPattern": "[0-9./]+"
+    },
+    "EngineVersion": {
+      "Type": "String",
+      "Default": "18.6",
+      "AllowedPattern": "[0-9.]+"
+    },
+    "ParameterFamily": {
+      "Type": "String",
+      "Default": "postgres18",
+      "AllowedPattern": "postgres[0-9]+"
+    },
+    "DatabaseClass": {
+      "Type": "String",
+      "Default": "db.t4g.micro",
+      "AllowedValues": [
+        "db.t4g.micro",
+        "db.t4g.small",
+        "db.t4g.medium"
+      ]
+    }
+  },
+  "Resources": {
+    "DataKey": {
+      "Type": "AWS::KMS::Key",
+      "Properties": {
+        "Description": {
+          "Fn::Sub": "${AWS::StackName} data encryption"
+        },
+        "EnableKeyRotation": true,
+        "KeyPolicy": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Sid": "AccountAdministration",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::Sub": "arn:${AWS::Partition}:iam::${AWS::AccountId}:root"
+                }
+              },
+              "Action": "kms:*",
+              "Resource": "*"
+            },
+            {
+              "Sid": "DatabaseLogEncryption",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": {
+                  "Fn::Sub": "logs.${AWS::Region}.amazonaws.com"
+                }
+              },
+              "Action": [
+                "kms:Encrypt",
+                "kms:Decrypt",
+                "kms:ReEncrypt*",
+                "kms:GenerateDataKey*",
+                "kms:DescribeKey"
+              ],
+              "Resource": "*",
+              "Condition": {
+                "ArnLike": {
+                  "kms:EncryptionContext:aws:logs:arn": {
+                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/rds/instance/${AWS::StackName}-postgres/*"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "zanich"
+          },
+          {
+            "Key": "Environment",
+            "Value": "preview"
+          },
+          {
+            "Key": "created_by",
+            "Value": "rds-oss-skill"
+          },
+          {
+            "Key": "generation_model",
+            "Value": "gpt-6"
+          }
+        ]
+      },
+      "Metadata": {
+        "com.aws.cloudformation.Context": {
+          "why": "Encrypt storage, credentials and logs",
+          "must": [
+            "Retain for the life of encrypted data"
+          ]
+        }
+      },
+      "DeletionPolicy": "Retain",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "DatabaseSubnetA": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "VpcId": {
+          "Ref": "VpcId"
+        },
+        "CidrBlock": {
+          "Ref": "DatabaseSubnetCidrA"
+        },
+        "AvailabilityZone": {
+          "Ref": "AvailabilityZoneA"
+        },
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "zanich"
+          },
+          {
+            "Key": "Environment",
+            "Value": "preview"
+          },
+          {
+            "Key": "created_by",
+            "Value": "rds-oss-skill"
+          },
+          {
+            "Key": "generation_model",
+            "Value": "gpt-6"
+          }
+        ]
+      },
+      "Metadata": {
+        "com.aws.cloudformation.Context": {
+          "why": "Isolated database subnet",
+          "must": [
+            "No internet route"
+          ]
+        }
+      }
+    },
+    "DatabaseSubnetB": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "VpcId": {
+          "Ref": "VpcId"
+        },
+        "CidrBlock": {
+          "Ref": "DatabaseSubnetCidrB"
+        },
+        "AvailabilityZone": {
+          "Ref": "AvailabilityZoneB"
+        },
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "zanich"
+          },
+          {
+            "Key": "Environment",
+            "Value": "preview"
+          },
+          {
+            "Key": "created_by",
+            "Value": "rds-oss-skill"
+          },
+          {
+            "Key": "generation_model",
+            "Value": "gpt-6"
+          }
+        ]
+      },
+      "Metadata": {
+        "com.aws.cloudformation.Context": {
+          "why": "Isolated database subnet",
+          "must": [
+            "No internet route"
+          ]
+        }
+      }
+    },
+    "DatabaseRouteTable": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "VpcId"
+        },
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "zanich"
+          },
+          {
+            "Key": "Environment",
+            "Value": "preview"
+          },
+          {
+            "Key": "created_by",
+            "Value": "rds-oss-skill"
+          },
+          {
+            "Key": "generation_model",
+            "Value": "gpt-6"
+          }
+        ]
+      },
+      "Metadata": {
+        "com.aws.cloudformation.Context": {
+          "why": "Local VPC routes only",
+          "must": [
+            "Do not add internet or NAT routes"
+          ]
+        }
+      }
+    },
+    "DatabaseRouteAssociationA": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "DatabaseRouteTable"
+        },
+        "SubnetId": {
+          "Ref": "DatabaseSubnetA"
+        }
+      },
+      "Metadata": {
+        "com.aws.cloudformation.Context": {
+          "why": "Avoid inheriting the VPC public route table",
+          "must": []
+        }
+      }
+    },
+    "DatabaseRouteAssociationB": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "DatabaseRouteTable"
+        },
+        "SubnetId": {
+          "Ref": "DatabaseSubnetB"
+        }
+      },
+      "Metadata": {
+        "com.aws.cloudformation.Context": {
+          "why": "Avoid inheriting the VPC public route table",
+          "must": []
+        }
+      }
+    },
+    "WebSecurityGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Zanich HTTP preview and database client identity",
+        "VpcId": {
+          "Ref": "VpcId"
+        },
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 80,
+            "ToPort": 80,
+            "CidrIp": "0.0.0.0/0",
+            "Description": "User-requested website preview"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "zanich"
+          },
+          {
+            "Key": "Environment",
+            "Value": "preview"
+          },
+          {
+            "Key": "created_by",
+            "Value": "rds-oss-skill"
+          },
+          {
+            "Key": "generation_model",
+            "Value": "gpt-6"
+          }
+        ]
+      },
+      "Metadata": {
+        "com.aws.cloudformation.Context": {
+          "why": "Public web preview on existing EC2",
+          "must": [
+            "No public port 3000 or 5432"
+          ]
+        }
+      }
+    },
+    "DatabaseSecurityGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "PostgreSQL from Zanich app only",
+        "VpcId": {
+          "Ref": "VpcId"
+        },
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 5432,
+            "ToPort": 5432,
+            "SourceSecurityGroupId": {
+              "Ref": "WebSecurityGroup"
+            }
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "zanich"
+          },
+          {
+            "Key": "Environment",
+            "Value": "preview"
+          },
+          {
+            "Key": "created_by",
+            "Value": "rds-oss-skill"
+          },
+          {
+            "Key": "generation_model",
+            "Value": "gpt-6"
+          }
+        ]
+      },
+      "Metadata": {
+        "com.aws.cloudformation.Context": {
+          "why": "Restrict database access to app hosts",
+          "must": [
+            "Never allow public database ingress"
+          ]
+        }
+      }
+    },
+    "DatabaseSubnetGroup": {
+      "Type": "AWS::RDS::DBSubnetGroup",
+      "Properties": {
+        "DBSubnetGroupDescription": "Zanich isolated database subnets",
+        "SubnetIds": [
+          {
+            "Ref": "DatabaseSubnetA"
+          },
+          {
+            "Ref": "DatabaseSubnetB"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "zanich"
+          },
+          {
+            "Key": "Environment",
+            "Value": "preview"
+          },
+          {
+            "Key": "created_by",
+            "Value": "rds-oss-skill"
+          },
+          {
+            "Key": "generation_model",
+            "Value": "gpt-6"
+          }
+        ]
+      },
+      "Metadata": {
+        "com.aws.cloudformation.Context": {
+          "why": "Private Multi-AZ placement",
+          "must": []
+        }
+      }
+    },
+    "DatabaseParameters": {
+      "Type": "AWS::RDS::DBParameterGroup",
+      "Properties": {
+        "Description": "Zanich PostgreSQL with enforced TLS",
+        "Family": {
+          "Ref": "ParameterFamily"
+        },
+        "Parameters": {
+          "rds.force_ssl": "1"
+        },
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "zanich"
+          },
+          {
+            "Key": "Environment",
+            "Value": "preview"
+          },
+          {
+            "Key": "created_by",
+            "Value": "rds-oss-skill"
+          },
+          {
+            "Key": "generation_model",
+            "Value": "gpt-6"
+          }
+        ]
+      },
+      "Metadata": {
+        "com.aws.cloudformation.Context": {
+          "why": "Require encrypted connections",
+          "must": []
+        }
+      }
+    },
+    "DatabaseLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": {
+          "Fn::Sub": "/aws/rds/instance/${AWS::StackName}-postgres/postgresql"
+        },
+        "KmsKeyId": {
+          "Fn::GetAtt": [
+            "DataKey",
+            "Arn"
+          ]
+        },
+        "RetentionInDays": 14,
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "zanich"
+          },
+          {
+            "Key": "Environment",
+            "Value": "preview"
+          },
+          {
+            "Key": "created_by",
+            "Value": "rds-oss-skill"
+          },
+          {
+            "Key": "generation_model",
+            "Value": "gpt-6"
+          }
+        ]
+      },
+      "Metadata": {
+        "com.aws.cloudformation.Context": {
+          "why": "Bounded encrypted database logs",
+          "must": [
+            "Retain on replacement"
+          ]
+        }
+      },
+      "DeletionPolicy": "Retain",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "Database": {
+      "Type": "AWS::RDS::DBInstance",
+      "Properties": {
+        "DBInstanceIdentifier": {
+          "Fn::Sub": "${AWS::StackName}-postgres"
+        },
+        "Engine": "postgres",
+        "EngineVersion": {
+          "Ref": "EngineVersion"
+        },
+        "DBInstanceClass": {
+          "Ref": "DatabaseClass"
+        },
+        "DBName": "zanich",
+        "MasterUsername": "zanich_owner",
+        "ManageMasterUserPassword": true,
+        "MasterUserSecret": {
+          "KmsKeyId": {
+            "Fn::GetAtt": [
+              "DataKey",
+              "Arn"
+            ]
+          }
+        },
+        "AllocatedStorage": "20",
+        "MaxAllocatedStorage": 100,
+        "StorageType": "gp3",
+        "StorageEncrypted": true,
+        "KmsKeyId": {
+          "Fn::GetAtt": [
+            "DataKey",
+            "Arn"
+          ]
+        },
+        "PubliclyAccessible": false,
+        "MultiAZ": true,
+        "BackupRetentionPeriod": 7,
+        "DeletionProtection": true,
+        "DeleteAutomatedBackups": false,
+        "AutoMinorVersionUpgrade": true,
+        "AllowMajorVersionUpgrade": false,
+        "DBSubnetGroupName": {
+          "Ref": "DatabaseSubnetGroup"
+        },
+        "DBParameterGroupName": {
+          "Ref": "DatabaseParameters"
+        },
+        "VPCSecurityGroups": [
+          {
+            "Ref": "DatabaseSecurityGroup"
+          }
+        ],
+        "EnablePerformanceInsights": true,
+        "PerformanceInsightsRetentionPeriod": 7,
+        "PerformanceInsightsKMSKeyId": {
+          "Fn::GetAtt": [
+            "DataKey",
+            "Arn"
+          ]
+        },
+        "DatabaseInsightsMode": "standard",
+        "EnableCloudwatchLogsExports": [
+          "postgresql"
+        ],
+        "CopyTagsToSnapshot": true,
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "zanich"
+          },
+          {
+            "Key": "Environment",
+            "Value": "preview"
+          },
+          {
+            "Key": "created_by",
+            "Value": "rds-oss-skill"
+          },
+          {
+            "Key": "generation_model",
+            "Value": "gpt-6"
+          }
+        ]
+      },
+      "Metadata": {
+        "com.aws.cloudformation.Context": {
+          "why": "Small Multi-AZ PostgreSQL with managed master credentials",
+          "must": [
+            "Private access only",
+            "Retain database and backups",
+            "Runtime must not use owner credentials"
+          ]
+        }
+      },
+      "DeletionPolicy": "Retain",
+      "UpdateReplacePolicy": "Retain",
+      "DependsOn": "DatabaseLogGroup"
+    },
+    "AppSecret": {
+      "Type": "AWS::SecretsManager::Secret",
+      "Properties": {
+        "Description": "Zanich application database account",
+        "KmsKeyId": {
+          "Fn::GetAtt": [
+            "DataKey",
+            "Arn"
+          ]
+        },
+        "GenerateSecretString": {
+          "SecretStringTemplate": "{\"username\":\"zanich_app\"}",
+          "GenerateStringKey": "password",
+          "PasswordLength": 40,
+          "ExcludePunctuation": true
+        },
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "zanich"
+          },
+          {
+            "Key": "Environment",
+            "Value": "preview"
+          },
+          {
+            "Key": "created_by",
+            "Value": "rds-oss-skill"
+          },
+          {
+            "Key": "generation_model",
+            "Value": "gpt-6"
+          }
+        ]
+      },
+      "Metadata": {
+        "com.aws.cloudformation.Context": {
+          "why": "Separate runtime and owner credentials",
+          "must": [
+            "Never print secret values"
+          ]
+        }
+      },
+      "DeletionPolicy": "Retain",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "AppRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "ec2.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/AmazonSSMManagedInstanceCore"
+          }
+        ],
+        "Policies": [
+          {
+            "PolicyName": "ZanichAppSecret",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "secretsmanager:GetSecretValue",
+                    "secretsmanager:DescribeSecret"
+                  ],
+                  "Resource": {
+                    "Ref": "AppSecret"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "kms:Decrypt"
+                  ],
+                  "Resource": {
+                    "Fn::GetAtt": [
+                      "DataKey",
+                      "Arn"
+                    ]
+                  },
+                  "Condition": {
+                    "StringEquals": {
+                      "kms:ViaService": {
+                        "Fn::Sub": "secretsmanager.${AWS::Region}.amazonaws.com"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "zanich"
+          },
+          {
+            "Key": "Environment",
+            "Value": "preview"
+          },
+          {
+            "Key": "created_by",
+            "Value": "rds-oss-skill"
+          },
+          {
+            "Key": "generation_model",
+            "Value": "gpt-6"
+          }
+        ]
+      },
+      "Metadata": {
+        "com.aws.cloudformation.Context": {
+          "why": "Instance management and runtime credential access",
+          "must": [
+            "No master secret or account administration access"
+          ]
+        }
+      }
+    },
+    "AppInstanceProfile": {
+      "Type": "AWS::IAM::InstanceProfile",
+      "Properties": {
+        "Roles": [
+          {
+            "Ref": "AppRole"
+          }
+        ]
+      },
+      "Metadata": {
+        "com.aws.cloudformation.Context": {
+          "why": "Role attachment for the existing EC2 host",
+          "must": []
+        }
+      }
+    },
+    "DatabaseMemoryAlarm": {
+      "Type": "AWS::CloudWatch::Alarm",
+      "Properties": {
+        "Namespace": "AWS/RDS",
+        "MetricName": "FreeableMemory",
+        "Dimensions": [
+          {
+            "Name": "DBInstanceIdentifier",
+            "Value": {
+              "Ref": "Database"
+            }
+          }
+        ],
+        "Statistic": "Average",
+        "Period": 300,
+        "EvaluationPeriods": 2,
+        "Threshold": 104857600,
+        "ComparisonOperator": "LessThanThreshold",
+        "TreatMissingData": "missing",
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "zanich"
+          },
+          {
+            "Key": "Environment",
+            "Value": "preview"
+          },
+          {
+            "Key": "created_by",
+            "Value": "rds-oss-skill"
+          },
+          {
+            "Key": "generation_model",
+            "Value": "gpt-6"
+          }
+        ]
+      },
+      "Metadata": {
+        "com.aws.cloudformation.Context": {
+          "why": "Surface sustained resource health problems",
+          "must": [
+            "Notification destinations require separate configuration"
+          ]
+        }
+      }
+    },
+    "DatabaseStorageAlarm": {
+      "Type": "AWS::CloudWatch::Alarm",
+      "Properties": {
+        "Namespace": "AWS/RDS",
+        "MetricName": "FreeStorageSpace",
+        "Dimensions": [
+          {
+            "Name": "DBInstanceIdentifier",
+            "Value": {
+              "Ref": "Database"
+            }
+          }
+        ],
+        "Statistic": "Average",
+        "Period": 300,
+        "EvaluationPeriods": 2,
+        "Threshold": 2147483648,
+        "ComparisonOperator": "LessThanThreshold",
+        "TreatMissingData": "missing",
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "zanich"
+          },
+          {
+            "Key": "Environment",
+            "Value": "preview"
+          },
+          {
+            "Key": "created_by",
+            "Value": "rds-oss-skill"
+          },
+          {
+            "Key": "generation_model",
+            "Value": "gpt-6"
+          }
+        ]
+      },
+      "Metadata": {
+        "com.aws.cloudformation.Context": {
+          "why": "Surface sustained resource health problems",
+          "must": [
+            "Notification destinations require separate configuration"
+          ]
+        }
+      }
+    },
+    "InstanceStatusAlarm": {
+      "Type": "AWS::CloudWatch::Alarm",
+      "Properties": {
+        "Namespace": "AWS/EC2",
+        "MetricName": "StatusCheckFailed",
+        "Dimensions": [
+          {
+            "Name": "InstanceId",
+            "Value": {
+              "Ref": "AppInstanceId"
+            }
+          }
+        ],
+        "Statistic": "Average",
+        "Period": 300,
+        "EvaluationPeriods": 2,
+        "Threshold": 0,
+        "ComparisonOperator": "GreaterThanThreshold",
+        "TreatMissingData": "missing",
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "zanich"
+          },
+          {
+            "Key": "Environment",
+            "Value": "preview"
+          },
+          {
+            "Key": "created_by",
+            "Value": "rds-oss-skill"
+          },
+          {
+            "Key": "generation_model",
+            "Value": "gpt-6"
+          }
+        ]
+      },
+      "Metadata": {
+        "com.aws.cloudformation.Context": {
+          "why": "Surface sustained resource health problems",
+          "must": [
+            "Notification destinations require separate configuration"
+          ]
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "DatabaseEndpoint": {
+      "Value": {
+        "Fn::GetAtt": [
+          "Database",
+          "Endpoint.Address"
+        ]
+      },
+      "Description": "Private PostgreSQL hostname"
+    },
+    "MasterSecretArn": {
+      "Value": {
+        "Fn::GetAtt": [
+          "Database",
+          "MasterUserSecret.SecretArn"
+        ]
+      },
+      "Description": "Managed owner credential reference"
+    },
+    "AppSecretArn": {
+      "Value": {
+        "Ref": "AppSecret"
+      },
+      "Description": "Runtime credential reference"
+    },
+    "WebSecurityGroupId": {
+      "Value": {
+        "Ref": "WebSecurityGroup"
+      },
+      "Description": "Attach alongside the existing SSH group"
+    },
+    "AppInstanceProfileName": {
+      "Value": {
+        "Ref": "AppInstanceProfile"
+      },
+      "Description": "EC2 management and secret access role"
+    },
+    "DatabaseIdentifier": {
+      "Value": {
+        "Ref": "Database"
+      },
+      "Description": "Database identifier"
+    }
+  }
+}

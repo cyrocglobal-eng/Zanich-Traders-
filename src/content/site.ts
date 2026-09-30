@@ -40,10 +40,10 @@ export const site = {
 
   hero: {
     eyebrow: "Printing · Branding · Promotional Products",
-    headline: ["Make your brand", "impossible to ignore."],
-    sub: "Zanich General Traders is a Nairobi-based printing and branding firm that helps businesses, organisations and institutions stand out — with quality, creativity and turnaround that keeps you ahead.",
-    primaryCta: { label: "Get a Free Quote", href: "#contact" },
-    secondaryCta: { label: "View Our Work", href: "#portfolio" },
+    headline: ["Your brand.", "Beautifully", "brought to life."],
+    sub: "Printing, branded apparel and promotional products for businesses, events and personal projects. Designed and produced with you in Nairobi.",
+    primaryCta: { label: "Get a Quote", href: "#contact" },
+    secondaryCta: { label: "Explore Our Work", href: "#portfolio" },
     stats: [
       { value: "7+", label: "Print & branding disciplines" },
       { value: "50+", label: "Brands served" }, // PLACEHOLDER — confirm real figure
